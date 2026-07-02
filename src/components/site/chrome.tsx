@@ -200,7 +200,7 @@ export function SiteFooter() {
             <BrandLogo variant="footer" />
           </div>
           <p className="footer-copy">
-            聚合电竞博彩、体育博彩、德州扑克、棋牌游戏、平台资料、风险提醒与入口核对信息。内容以资料整理和风险教育为核心。
+            博彩资讯、平台资料与风险提醒整理站。内容仅供资料参考，不提供投注服务。
           </p>
           <span className="footer-age">18+ 风险提醒</span>
         </div>
@@ -474,7 +474,7 @@ export function OfferRules() {
         <div>
           <p className="eyebrow risk">活动规则提醒</p>
           <h2>活动资料先看限制条件，再看适用范围</h2>
-          <p>活动资料只作为规则索引展示，重点记录更新时间、有效投注、流水要求、地区限制、账户限制和取消条件。</p>
+          <p>查看活动资料时，建议先核对更新时间、有效投注、流水要求、地区限制、账户限制和取消条件。</p>
         </div>
         <Link className="btn-secondary" href="/article/online-games-offer-terms">
           查看规则

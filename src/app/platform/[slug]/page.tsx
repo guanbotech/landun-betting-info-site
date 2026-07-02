@@ -139,7 +139,7 @@ export default async function PlatformPage({ params }: Props) {
             </details>
             <details open>
               <summary>风险等级如何理解？</summary>
-              <p>风险等级来自资料完整度、规则清晰度、入口状态和编辑观察等字段，后续可按真实数据调整。</p>
+              <p>风险等级会根据资料完整度、规则清晰度、入口状态和公开争议信息持续更新。</p>
             </details>
           </section>
 
@@ -168,7 +168,7 @@ export default async function PlatformPage({ params }: Props) {
           <section className="legal-note">
             <h2>免责声明</h2>
             <p>
-              本页仅整理平台公开资料、编辑字段与风险提醒，不代表平台官方声明，不构成使用建议或任何形式背书。访问前请自行核对所在地法律法规、平台条款、费用规则和账户限制。
+              本页仅整理平台公开资料与风险提醒，不代表平台官方声明，不构成使用建议或任何形式背书。访问前请自行核对所在地法律法规、平台条款、费用规则和账户限制。
             </p>
           </section>
         </article>

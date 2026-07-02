@@ -90,7 +90,7 @@ export default function Home() {
           <SectionTitle
             eyebrow="热门平台资料横向榜单"
             title="平台资料库"
-            description="统一展示平台类型、支持内容、资料完整度、规则公开度、更新时间和风险等级。"
+            description="整理平台类型、支持内容、资料完整度、规则公开度、更新时间和风险等级，方便访问前核对。"
           />
           <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
             {platforms.map((platform, index) => (
