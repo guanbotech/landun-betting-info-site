@@ -5,11 +5,11 @@ import {
   Breadcrumbs,
   CategoryCover,
   PlatformCard,
-  RiskNotice,
   SectionTitle,
   Sidebar,
   SiteFooter,
   SiteHeader,
+  StatCard,
 } from "@/components/site/chrome";
 import { articles, articlesByCategory, categories, categoryBySlug, categoryModules, platforms } from "@/lib/site-data";
 
@@ -41,6 +41,7 @@ export default async function CategoryPage({ params }: Props) {
   const categoryArticles = articlesByCategory(slug);
   const list = categoryArticles.length ? categoryArticles : articles.slice(0, 4);
   const featured = list[0];
+  const latestArticles = [...list, ...articles.filter((article) => article.category !== slug)].slice(0, 4);
   const modules = categoryModules[slug] ?? [
     { title: "资料说明", description: "整理平台资料、规则公开度、入口状态和更新时间。" },
     { title: "风险核对", description: "访问前先核对条款、地区限制、费用规则和账号安全。" },
@@ -54,52 +55,62 @@ export default async function CategoryPage({ params }: Props) {
   return (
     <>
       <SiteHeader />
-      <main className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
+      <main className="site-container py-10">
         <Breadcrumbs items={[{ label: category.name }]} />
         <section className="archive-hero">
-          <div>
-            <p className="eyebrow">{category.name}</p>
-            <h1>{category.name}</h1>
-            <p>{category.description}</p>
+          <div className="archive-hero-inner">
+            <div>
+              <p className="eyebrow">频道 / {category.name}</p>
+              <h1>{category.name}</h1>
+              <p>{category.description}</p>
+              <div className="channel-stats">
+                <StatCard label="频道文章" value={list.length} />
+                <StatCard label="平台资料" value={platformList.length} />
+                <StatCard label="风险提醒" value={modules.filter((item) => item.title.includes("风险")).length || 1} />
+              </div>
+            </div>
+            <CategoryCover categorySlug={category.slug} title={`${category.name}重点专题`} compact />
           </div>
-          <CategoryCover categorySlug={category.slug} title={`${category.name}资料专题`} compact />
         </section>
 
-        <div className="mt-8 grid gap-8 lg:grid-cols-[1fr_330px]">
-          <div>
-            <section className="module-grid" aria-label={`${category.name}栏目模块`}>
-              {modules.map((item) => (
-                <article className="module-card" key={item.title}>
-                  <span>{item.title}</span>
-                  <p>{item.description}</p>
-                </article>
-              ))}
-            </section>
+        <section className="mt-8">
+          <SectionTitle eyebrow="频道重点专题" title={`${category.name}专题索引`} />
+          <div className="module-grid">
+            {modules.map((item) => (
+              <article className="module-card" key={item.title}>
+                <span>{item.title}</span>
+                <p>{item.description}</p>
+              </article>
+            ))}
+          </div>
+        </section>
 
+        <div className="mt-8 grid gap-8 lg:grid-cols-[minmax(0,1fr)_330px]">
+          <div className="min-w-0">
             <SectionTitle eyebrow="重点文章" title={`${category.name}重点内容`} />
-            <div className="mt-5">
-              <ArticleCard article={featured} featured />
-            </div>
+            <ArticleCard article={featured} featured />
+
+            <section className="mt-10">
+              <SectionTitle eyebrow="最新文章" title={`${category.name}最新内容`} />
+              <div className="category-news-list">
+                {latestArticles.map((article) => (
+                  <ArticleCard key={article.slug} article={article} />
+                ))}
+              </div>
+            </section>
 
             <section className="mt-10">
               <SectionTitle eyebrow="平台资料" title={`${category.name}相关平台资料`} />
-              <div className="mt-5 grid gap-4 md:grid-cols-2">
+              <div className="grid gap-4 md:grid-cols-2">
                 {platformList.map((platform) => (
                   <PlatformCard key={platform.slug} platform={platform} />
                 ))}
               </div>
             </section>
 
-            <SectionTitle eyebrow="最新文章列表" title="最新文章" />
-            <div className="mt-5 space-y-5">
-              {list.map((article) => (
-                <ArticleCard key={article.slug} article={article} />
-              ))}
-            </div>
-
             <section className="mt-10">
-              <SectionTitle eyebrow="相关文章推荐" title="延伸阅读" />
-              <div className="mt-5 grid gap-4 md:grid-cols-2">
+              <SectionTitle eyebrow="延伸阅读" title="相关指南与风险内容" />
+              <div className="grid gap-4 md:grid-cols-2">
                 {articles
                   .filter((article) => article.category !== slug)
                   .slice(0, 4)
@@ -116,10 +127,7 @@ export default async function CategoryPage({ params }: Props) {
               <span>下一页</span>
             </nav>
           </div>
-          <div className="space-y-6">
-            <Sidebar />
-            <RiskNotice compact />
-          </div>
+          <Sidebar />
         </div>
       </main>
       <SiteFooter />

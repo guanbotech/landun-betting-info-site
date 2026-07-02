@@ -11,7 +11,7 @@ export default function NotFound() {
           <p className="eyebrow">404</p>
           <h1>页面未找到</h1>
           <p>
-            你访问的内容可能已移动、更新或暂时不可用。可以返回首页，或继续查看平台资料、风险提醒和博彩指南内容。
+            你访问的内容可能已移动、更新或暂时不可用。可以返回首页，或继续查看平台资料、风险提醒和博彩资讯内容。
           </p>
           <div className="mt-7 flex flex-wrap gap-3">
             <Link className="btn-primary" href="/">

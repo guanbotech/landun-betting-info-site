@@ -38,9 +38,20 @@ export type Platform = {
   risks: string[];
 };
 
+export type TopicPage = {
+  slug: string;
+  title: string;
+  parentSlug: string;
+  parentName: string;
+  description: string;
+  cover: string;
+  highlights: string[];
+  risks: string[];
+};
+
 export const site = {
   name: "蓝盾博彩情报站",
-  url: "https://example.com",
+  url: "https://asia-bet-data.com",
   description:
     "面向中文用户整理博彩资讯、平台资料、风险提醒、入口核对与规则指南，强调信息核对、理性判断和访问前风险识别。",
 };
@@ -69,8 +80,8 @@ export const categories: Category[] = [
   },
   {
     slug: "online-games",
-    name: "在线游戏",
-    description: "解释线上游戏规则、活动条件、奖池机制和体验前注意事项。",
+    name: "棋牌游戏",
+    description: "整理牛牛、三公、百家乐、炸金花、龙虎斗、斗地主等棋牌游戏规则、活动条件和访问前注意事项。",
     accent: "teal",
     cover: "games",
   },
@@ -82,23 +93,16 @@ export const categories: Category[] = [
     cover: "risk",
   },
   {
-    slug: "guides",
-    name: "博彩指南",
-    description: "以教程方式说明术语、规则、核验流程与自我限制工具。",
-    accent: "slate",
-    cover: "guide",
-  },
-  {
     slug: "platform-reviews",
-    name: "平台评测",
-    description: "用统一维度拆解平台资料、规则透明度、支持内容和风险等级。",
+    name: "博彩资讯",
+    description: "聚合平台资料、行业规则、风险提醒、入口核对和监管观察等博彩资讯内容。",
     accent: "emerald",
     cover: "review",
   },
   {
     slug: "rankings",
-    name: "平台排行榜",
-    description: "按资料完整度、规则清晰度、风险提示充分度整理平台列表。",
+    name: "博彩监管",
+    description: "按资料完整度、规则清晰度、风险提示充分度和更新时间整理博彩监管观察与平台资料索引。",
     accent: "amber",
     cover: "ranking",
   },
@@ -127,11 +131,11 @@ export const categoryModules: Record<string, { title: string; description: strin
     { title: "德州扑克风险提醒", description: "强调长期波动、情绪决策和超预算参与风险。" },
   ],
   "online-games": [
-    { title: "在线游戏类型", description: "按游戏类型整理规则差异、结算方式和体验前注意事项。" },
+    { title: "棋牌游戏类型", description: "按牛牛、三公、百家乐、炸金花、龙虎斗、斗地主等类型整理规则差异和体验前注意事项。" },
     { title: "活动规则说明", description: "说明活动时间、流水倍数、有效投注、最高限制和排除项。" },
-    { title: "游戏平台资料", description: "整理游戏平台支持内容、规则公开度、入口状态和风险等级。" },
+    { title: "棋牌游戏平台资料", description: "整理棋牌游戏平台支持内容、规则公开度、入口状态和风险等级。" },
     { title: "流水与限制提醒", description: "提醒读者先读有效投注范围、提款条件和账户等级限制。" },
-    { title: "在线游戏风险提醒", description: "提示活动误读、过度参与、地区限制和客服争议风险。" },
+    { title: "棋牌游戏风险提醒", description: "提示活动误读、过度参与、地区限制和客服争议风险。" },
   ],
   "risk-warning": [
     { title: "虚假入口识别", description: "核对域名拼写、证书、公告来源和跳转链路是否异常。" },
@@ -140,10 +144,10 @@ export const categoryModules: Record<string, { title: string; description: strin
     { title: "账号安全风险", description: "提醒密码、二次验证、设备登录和账号冻结条款。" },
     { title: "客服与转账风险", description: "警惕私下转账、非公开收款、诱导沟通和身份核验问题。" },
   ],
-  guides: [
-    { title: "新手访问前检查", description: "先确认年龄限制、所在地法规、预算上限和平台公开条款。" },
+  "platform-reviews": [
+    { title: "行业资讯整理", description: "聚合平台资料、规则变化、风险提醒和入口核对相关资讯。" },
     { title: "平台资料怎么看", description: "从平台类型、支持内容、资料完整度、风险等级和更新时间入手。" },
-    { title: "排行榜怎么看", description: "理解榜单只做资料索引，不等于推荐或背书。" },
+    { title: "博彩监管怎么看", description: "理解监管和榜单内容只做资料索引，不等于推荐或背书。" },
     { title: "入口核对方法", description: "核对域名、公告、证书、客服渠道和最近更新时间。" },
     { title: "常见问题", description: "整理规则、活动、账户、支付和责任博彩相关问题。" },
   ],
@@ -234,17 +238,17 @@ export const articles: Article[] = [
   },
   {
     slug: "online-games-offer-terms",
-    title: "在线游戏活动规则提醒：读懂流水、有效投注与限制条款",
-    description: "拆解在线游戏活动规则页常见术语，提醒读者关注流水倍数、有效投注和时间限制。",
+    title: "棋牌游戏活动规则提醒：读懂流水、有效投注与限制条款",
+    description: "拆解棋牌游戏活动规则页常见术语，提醒读者关注流水倍数、有效投注和时间限制。",
     category: "online-games",
-    tags: ["在线游戏", "活动规则", "风险提醒"],
+    tags: ["棋牌游戏", "活动规则", "风险提醒"],
     publishedAt: "2026-05-28",
     updatedAt: "2026-06-18",
     author: "内容编辑",
     readTime: "5 分钟",
     summary: "活动信息应作为规则资料展示，避免刺激性领取文案，并突出限制条件。",
     body: [
-      "在线游戏活动页容易出现信息不对称。活动规则页应把活动名称、适用范围、时间、流水要求、有效投注范围、最高限制、取消条件和客服争议处理放在同一张规则卡中。",
+      "棋牌游戏活动页容易出现信息不对称。活动规则页应把活动名称、适用范围、时间、流水要求、有效投注范围、最高限制、取消条件和客服争议处理放在同一张规则卡中。",
       "站内按钮建议使用查看规则、风险提醒、核对入口，不使用诱导注册或领取类文案。活动模块的定位是资料索引，不是转化页。",
       "当活动规则出现地区限制、游戏限制或账户等级限制时，应在摘要和风险提醒框里重复提示。",
     ],
@@ -288,15 +292,15 @@ export const articles: Article[] = [
   },
   {
     slug: "guide-responsible-gambling",
-    title: "博彩指南：建立预算上限和冷静期的基础方法",
-    description: "面向内容站的责任博彩指南，说明预算、冷静期、自我排除和求助资源组织方式。",
-    category: "guides",
-    tags: ["博彩指南", "责任博彩", "风险控制"],
+    title: "博彩资讯：建立预算上限和冷静期的基础方法",
+    description: "面向内容站的责任博彩资讯，说明预算、冷静期、自我排除和求助资源组织方式。",
+    category: "platform-reviews",
+    tags: ["博彩资讯", "责任博彩", "风险控制"],
     publishedAt: "2026-05-14",
     updatedAt: "2026-06-19",
     author: "指南编辑",
     readTime: "7 分钟",
-    summary: "博彩指南栏目应把风险教育放在核心位置，帮助读者识别过度参与信号。",
+    summary: "博彩资讯栏目应把风险教育放在核心位置，帮助读者识别过度参与信号。",
     body: [
       "责任博彩内容不是装饰模块，而是资讯站的基础设施。指南页应持续提醒读者设置预算、记录时间、启用冷静期和了解自我排除工具。",
       "如果读者出现借钱参与、隐瞒支出、频繁追损或影响工作生活等情况，应停止继续参与并寻求专业帮助。内容站不应承诺结果，也不应淡化风险。",
@@ -312,6 +316,189 @@ export const articles: Article[] = [
         a: "冷静期是限制自己在一段时间内停止或减少参与的自我管理安排。",
       },
     ],
+  },
+];
+
+export const topicPages: TopicPage[] = [
+  {
+    slug: "champions-league",
+    title: "欧冠",
+    parentSlug: "sports-betting",
+    parentName: "体育博彩",
+    description: "整理欧冠赛事规则、赛程变量、赛前信息核对和平台资料参考。",
+    cover: "sports",
+    highlights: ["赛程与延期规则", "球队伤停与首发", "盘口更新时间", "体育平台资料"],
+    risks: ["赛程临时调整", "加时结算口径", "数据来源不一致"],
+  },
+  {
+    slug: "premier-league",
+    title: "英超",
+    parentSlug: "sports-betting",
+    parentName: "体育博彩",
+    description: "关注英超赛事资讯、盘口规则、赛前信息和风险提醒。",
+    cover: "sports",
+    highlights: ["赛前信息核对", "让球与大小球规则", "伤停名单", "体育平台资料"],
+    risks: ["盘口更新过快", "首发变化", "结算条款差异"],
+  },
+  {
+    slug: "nba",
+    title: "NBA",
+    parentSlug: "sports-betting",
+    parentName: "体育博彩",
+    description: "整理 NBA 篮球相关规则、球员状态、赛程变量和平台资料。",
+    cover: "sports",
+    highlights: ["球员出场状态", "加时结算规则", "赛程背靠背", "篮球平台资料"],
+    risks: ["临场轮休", "盘口关闭时间", "数据延迟"],
+  },
+  {
+    slug: "f1",
+    title: "F1",
+    parentSlug: "sports-betting",
+    parentName: "体育博彩",
+    description: "整理 F1 赛事规则、排位赛、正赛、天气变量和结算注意事项。",
+    cover: "sports",
+    highlights: ["排位与正赛规则", "天气与安全车", "车队信息", "结算说明"],
+    risks: ["退赛场景", "天气变化", "规则解释差异"],
+  },
+  {
+    slug: "chinese-super-league",
+    title: "中超",
+    parentSlug: "sports-betting",
+    parentName: "体育博彩",
+    description: "关注中超赛程、球队信息、盘口变化和赛前核对事项。",
+    cover: "sports",
+    highlights: ["赛程核对", "首发名单", "天气与场地", "体育平台资料"],
+    risks: ["赛程调整", "数据源滞后", "结算争议"],
+  },
+  {
+    slug: "sports-betting-regulation",
+    title: "体育博彩监管",
+    parentSlug: "sports-betting",
+    parentName: "体育博彩",
+    description: "整理体育博彩平台资料、风险等级、规则透明度和监管观察。",
+    cover: "ranking",
+    highlights: ["平台资料索引", "风险等级", "规则公开度", "更新时间"],
+    risks: ["资料过期", "平台背书误读", "入口变化"],
+  },
+  {
+    slug: "league-of-legends",
+    title: "英雄联盟",
+    parentSlug: "esports-betting",
+    parentName: "电子竞技",
+    description: "整理英雄联盟赛事规则、版本变化、地图池和盘口风险提醒。",
+    cover: "esports",
+    highlights: ["版本更新", "首发名单", "BO3/BO5 规则", "赛事数据来源"],
+    risks: ["临场换人", "版本影响", "重赛结算"],
+  },
+  {
+    slug: "cs2",
+    title: "CS2",
+    parentSlug: "esports-betting",
+    parentName: "电子竞技",
+    description: "关注 CS2 地图池、赛制、战队名单和结算规则。",
+    cover: "esports",
+    highlights: ["地图池", "战队阵容", "赛制规则", "盘口更新时间"],
+    risks: ["地图更换", "技术暂停", "数据延迟"],
+  },
+  {
+    slug: "dota2",
+    title: "DOTA2",
+    parentSlug: "esports-betting",
+    parentName: "电子竞技",
+    description: "整理 DOTA2 版本、阵容、赛制和盘口核对资料。",
+    cover: "esports",
+    highlights: ["版本环境", "英雄禁选", "赛制说明", "赛事数据"],
+    risks: ["版本波动", "临场变阵", "结算差异"],
+  },
+  {
+    slug: "honor-of-kings",
+    title: "王者荣耀",
+    parentSlug: "esports-betting",
+    parentName: "电子竞技",
+    description: "整理王者荣耀赛事规则、战队信息、版本变化和风险提醒。",
+    cover: "esports",
+    highlights: ["赛事规则", "首发名单", "版本变化", "平台资料"],
+    risks: ["临场名单变化", "版本影响", "盘口更新延迟"],
+  },
+  {
+    slug: "valorant",
+    title: "无畏契约",
+    parentSlug: "esports-betting",
+    parentName: "电子竞技",
+    description: "关注无畏契约地图、赛制、战队阵容和盘口资料。",
+    cover: "esports",
+    highlights: ["地图选择", "战队名单", "赛制说明", "数据来源"],
+    risks: ["地图池变化", "技术暂停", "结算口径"],
+  },
+  {
+    slug: "crossfire",
+    title: "穿越火线",
+    parentSlug: "esports-betting",
+    parentName: "电子竞技",
+    description: "整理穿越火线赛事规则、战队信息、地图和风险提醒。",
+    cover: "esports",
+    highlights: ["赛事规则", "地图信息", "战队资料", "盘口时间"],
+    risks: ["规则差异", "数据滞后", "结算争议"],
+  },
+  {
+    slug: "niuniu-online",
+    title: "牛牛在线游戏",
+    parentSlug: "online-games",
+    parentName: "棋牌游戏",
+    description: "整理牛牛在线游戏规则、活动条件、流水限制和平台资料。",
+    cover: "games",
+    highlights: ["规则说明", "活动条款", "流水限制", "平台资料"],
+    risks: ["活动误读", "有效投注范围", "提款条件"],
+  },
+  {
+    slug: "sangong-online",
+    title: "三公在线游戏",
+    parentSlug: "online-games",
+    parentName: "棋牌游戏",
+    description: "整理三公在线游戏规则、平台资料、活动限制和风险提醒。",
+    cover: "games",
+    highlights: ["玩法规则", "活动限制", "平台资料", "常见问题"],
+    risks: ["规则差异", "流水限制", "账户限制"],
+  },
+  {
+    slug: "baccarat-online",
+    title: "百家乐在线游戏",
+    parentSlug: "online-games",
+    parentName: "棋牌游戏",
+    description: "整理百家乐在线游戏资料、规则说明、平台核对和风险提醒。",
+    cover: "games",
+    highlights: ["规则说明", "平台资料", "活动条款", "风险提醒"],
+    risks: ["过度参与", "活动误读", "入口异常"],
+  },
+  {
+    slug: "golden-flower-online",
+    title: "炸金花在线",
+    parentSlug: "online-games",
+    parentName: "棋牌游戏",
+    description: "整理炸金花在线规则、平台资料、活动条件和风险提醒。",
+    cover: "games",
+    highlights: ["规则说明", "平台资料", "资金限制", "FAQ"],
+    risks: ["资金波动", "账户限制", "规则争议"],
+  },
+  {
+    slug: "dragon-tiger-online",
+    title: "龙虎斗在线",
+    parentSlug: "online-games",
+    parentName: "棋牌游戏",
+    description: "整理龙虎斗在线游戏规则、活动条款、平台资料和风险提醒。",
+    cover: "games",
+    highlights: ["规则说明", "活动条款", "入口核对", "风险提醒"],
+    risks: ["规则误读", "活动限制", "入口仿冒"],
+  },
+  {
+    slug: "doudizhu-online",
+    title: "斗地主在线",
+    parentSlug: "online-games",
+    parentName: "棋牌游戏",
+    description: "整理斗地主在线游戏规则、平台资料、活动限制和常见风险。",
+    cover: "games",
+    highlights: ["玩法规则", "平台资料", "活动条件", "常见问题"],
+    risks: ["活动限制", "账户规则", "资料过期"],
   },
 ];
 
@@ -379,8 +566,8 @@ export const platforms: Platform[] = [
   {
     slug: "clearline-games",
     name: "清线游戏资料",
-    type: "在线游戏资料",
-    supported: ["在线游戏", "活动规则", "资料核对"],
+    type: "棋牌游戏资料",
+    supported: ["棋牌游戏", "活动规则", "资料核对"],
     updatedAt: "2026-06-18",
     risk: "低",
     score: 86,
@@ -391,7 +578,7 @@ export const platforms: Platform[] = [
       { label: "编辑备注", value: "适合活动规则页内链" },
     ],
     overview:
-      "该资料卡展示在线游戏平台资料结构，强调活动规则、限制条件和读者核对流程。",
+      "该资料卡展示棋牌游戏平台资料结构，强调活动规则、限制条件和读者核对流程。",
     strengths: ["规则字段清楚", "活动条件便于拆解", "适合沉淀 FAQ"],
     cautions: ["不同活动限制不同", "需关注有效投注范围", "更新时间不能省略"],
     risks: ["流水误读", "活动排除项", "地区限制"],
@@ -415,6 +602,14 @@ export function articleBySlug(slug: string) {
 
 export function platformBySlug(slug: string) {
   return platforms.find((platform) => platform.slug === slug);
+}
+
+export function topicBySlug(slug: string) {
+  return topicPages.find((topic) => topic.slug === slug);
+}
+
+export function topicsByParent(parentSlug: string) {
+  return topicPages.filter((topic) => topic.parentSlug === parentSlug);
 }
 
 export function articlesByCategory(slug: string) {

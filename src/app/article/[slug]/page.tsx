@@ -1,15 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import {
-  ArticleCard,
-  Breadcrumbs,
-  CategoryCover,
-  RiskNotice,
-  Sidebar,
-  SiteFooter,
-  SiteHeader,
-} from "@/components/site/chrome";
+import { ArticleCard, Breadcrumbs, CategoryCover, RiskNotice, SiteFooter, SiteHeader } from "@/components/site/chrome";
 import { articleBySlug, articles, categoryBySlug, relatedArticles } from "@/lib/site-data";
 
 type Props = {
@@ -47,39 +39,41 @@ export default async function ArticlePage({ params }: Props) {
   return (
     <>
       <SiteHeader />
-      <main className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
+      <main className="site-container py-10">
         <Breadcrumbs
           items={[
             { label: category?.name ?? "资讯", href: `/category/${article.category}` },
             { label: article.title },
           ]}
         />
-        <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_330px]">
+        <div className="article-layout">
           <article className="article-shell">
-            <Link className="tag" href={`/category/${article.category}`}>
-              {category?.name}
-            </Link>
+            <div className="article-topline">
+              <Link className="tag" href={`/category/${article.category}`}>
+                {category?.name}
+              </Link>
+              {article.tags.map((tag) => (
+                <span className="info-chip" key={tag}>{tag}</span>
+              ))}
+            </div>
             <h1>{article.title}</h1>
+            <p className="article-summary">{article.summary}</p>
             <div className="meta-line">
               <span>发布时间：{article.publishedAt}</span>
               <span>更新时间：{article.updatedAt}</span>
               <span>作者 / 编辑：{article.author}</span>
+              <span>{article.readTime}</span>
             </div>
-            <p className="article-summary">{article.summary}</p>
-            <CategoryCover categorySlug={article.category} title={article.tags.slice(0, 2).join(" / ")} />
+            <div className="mt-7">
+              <CategoryCover categorySlug={article.category} title={article.tags.slice(0, 2).join(" / ")} />
+            </div>
 
-            <nav className="toc" aria-label="正文目录">
+            <nav className="toc lg:hidden" aria-label="正文目录">
               <h2>正文目录</h2>
               <ol>
-                <li>
-                  <a href="#section-1">核心信息与适用场景</a>
-                </li>
-                <li>
-                  <a href="#risk">风险提醒</a>
-                </li>
-                <li>
-                  <a href="#faq">FAQ</a>
-                </li>
+                <li><a href="#section-1">核心信息与适用场景</a></li>
+                <li><a href="#risk">风险提醒</a></li>
+                <li><a href="#faq">FAQ</a></li>
               </ol>
             </nav>
 
@@ -89,7 +83,7 @@ export default async function ArticlePage({ params }: Props) {
               ))}
             </section>
 
-            <div id="risk">
+            <div id="risk" className="mt-8">
               <RiskNotice />
             </div>
 
@@ -105,7 +99,7 @@ export default async function ArticlePage({ params }: Props) {
 
             <section className="related-block">
               <h2>相关文章</h2>
-              <div className="grid gap-4 md:grid-cols-3">
+              <div className="mt-5 grid gap-4 md:grid-cols-3">
                 {related.map((item) => (
                   <ArticleCard article={item} key={item.slug} />
                 ))}
@@ -124,7 +118,17 @@ export default async function ArticlePage({ params }: Props) {
               </p>
             </section>
           </article>
-          <Sidebar />
+          <aside className="article-side-toc hidden lg:block">
+            <h2>内容目录</h2>
+            <ol>
+              <li><a href="#section-1">核心信息与适用场景</a></li>
+              <li><a href="#risk">风险提醒</a></li>
+              <li><a href="#faq">FAQ</a></li>
+            </ol>
+            <div className="mt-5 border-t border-[#E2E8F0] pt-5">
+              <RiskNotice compact />
+            </div>
+          </aside>
         </div>
       </main>
       <SiteFooter />
