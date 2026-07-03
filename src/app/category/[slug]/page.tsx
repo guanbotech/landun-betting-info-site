@@ -51,6 +51,18 @@ export default async function CategoryPage({ params }: Props) {
     platform.supported.some((item) => category.name.includes(item) || platform.type.includes(category.name.slice(0, 2))),
   );
   const platformList = relatedPlatforms.length ? relatedPlatforms.slice(0, 2) : platforms.slice(0, 2);
+  const sidebarPlatforms = platformList
+    .concat(platforms)
+    .filter((platform, index, list) => list.findIndex((item) => item.slug === platform.slug) === index);
+  const guideTitleBySlug: Record<string, string> = {
+    "esports-betting": "电竞延伸阅读",
+    "sports-betting": "体育投注规则阅读",
+    poker: "德州扑克资料阅读",
+    "online-games": "棋牌游戏规则阅读",
+    "risk-warning": "风险识别专题",
+    "platform-reviews": "平台资料阅读",
+    rankings: "榜单说明阅读",
+  };
 
   return (
     <>
@@ -64,9 +76,9 @@ export default async function CategoryPage({ params }: Props) {
               <h1>{category.name}</h1>
               <p>{category.description}</p>
               <div className="channel-stats">
-                <StatCard label="频道文章" value={list.length} />
-                <StatCard label="平台资料" value={platformList.length} />
+                <StatCard label="资料整理" value={list.length} />
                 <StatCard label="风险提醒" value={modules.filter((item) => item.title.includes("风险")).length || 1} />
+                <StatCard label="最新更新" value={featured.updatedAt} />
               </div>
             </div>
             <CategoryCover categorySlug={category.slug} title={`${category.name}重点专题`} compact />
@@ -127,7 +139,7 @@ export default async function CategoryPage({ params }: Props) {
               <span>下一页</span>
             </nav>
           </div>
-          <Sidebar />
+          <Sidebar articleList={latestArticles} guideTitle={guideTitleBySlug[slug] ?? "延伸阅读"} platformList={sidebarPlatforms} />
         </div>
       </main>
       <SiteFooter />

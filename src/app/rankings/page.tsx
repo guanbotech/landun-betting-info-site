@@ -20,7 +20,7 @@ export default function RankingsPage() {
           <p className="eyebrow">博彩监管资料</p>
           <h1>博彩监管</h1>
           <p className="mt-4 max-w-4xl text-base leading-8 text-[#475569]">
-            这里按资料情况、规则说明、内容分类和更新时间列出平台。只方便查资料，不代表使用建议。
+            这里按资料情况、规则说明、内容分类和更新时间列出平台。榜单只方便查资料，不构成平台背书，也不代表使用建议。
           </p>
           <p className="mt-3 text-sm font-bold text-[#64748B]">更新时间：2026-06-30</p>
           <div className="channel-stats">

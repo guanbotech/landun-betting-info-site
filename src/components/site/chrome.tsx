@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 import {
   Activity,
@@ -116,6 +117,9 @@ function BrandLogo({ variant = "header" }: { variant?: "header" | "footer" }) {
 }
 
 export function SiteHeader() {
+  const pathname = usePathname();
+  const isActive = (href: string) => (href === "/" ? pathname === "/" : pathname.startsWith(href));
+
   return (
     <header className="site-header">
       <div className="site-header-inner">
@@ -123,12 +127,12 @@ export function SiteHeader() {
           <BrandLogo />
         </Link>
         <nav className="desktop-nav" aria-label="主导航">
-          <Link className="nav-link" href="/">
+          <Link className={isActive("/") ? "nav-link active" : "nav-link"} href="/">
             首页
           </Link>
           {navDropdowns.map((group) => (
             <details
-              className="nav-dropdown"
+              className={isActive(group.href) ? "nav-dropdown active" : "nav-dropdown"}
               key={group.label}
               onMouseLeave={(event) => {
                 event.currentTarget.open = false;
@@ -158,7 +162,7 @@ export function SiteHeader() {
             </details>
           ))}
           {plainNavItems.map((item) => (
-            <Link key={item.href} className="nav-link" href={item.href}>
+            <Link key={item.href} className={isActive(item.href) ? "nav-link active" : "nav-link"} href={item.href}>
               {item.label}
             </Link>
           ))}
@@ -199,7 +203,7 @@ export function SiteFooter() {
           <div className="footer-brand">
             <BrandLogo variant="footer" />
           </div>
-          <p className="footer-copy">记录博彩资讯、平台资料和风险提醒，不提供投注服务。</p>
+          <p className="footer-copy">记录博彩资讯、平台资料、入口变化和风险提醒，不提供投注服务。</p>
           <span className="footer-age">18+ 风险提醒</span>
         </div>
         {groups.map((group) => (
@@ -262,7 +266,15 @@ export function RiskNotice({ compact = false }: { compact?: boolean }) {
   );
 }
 
-export function Sidebar() {
+export function Sidebar({
+  articleList = articles.slice(0, 5),
+  guideTitle = "相关指南",
+  platformList = platforms.slice(0, 4),
+}: {
+  articleList?: typeof articles;
+  guideTitle?: string;
+  platformList?: typeof platforms;
+}) {
   return (
     <aside className="sidebar">
       <div className="side-panel">
@@ -271,7 +283,7 @@ export function Sidebar() {
           热门平台资料
         </h2>
         <div className="side-list">
-          {platforms.slice(0, 4).map((platform) => (
+          {platformList.slice(0, 4).map((platform) => (
             <Link key={platform.slug} href={`/platform/${platform.slug}`} className="platform-mini">
               <span className="platform-logo">{platform.name.slice(0, 1)}</span>
               <span>
@@ -288,10 +300,10 @@ export function Sidebar() {
       <div className="side-panel">
         <h2 className="side-title">
           <BookOpen className="size-4" aria-hidden="true" />
-          相关指南
+          {guideTitle}
         </h2>
         <ul className="side-article-list">
-          {articles.slice(0, 5).map((article) => (
+          {articleList.slice(0, 5).map((article) => (
             <li key={article.slug}>
               <Link href={`/article/${article.slug}`}>{article.title}</Link>
             </li>
@@ -348,10 +360,11 @@ export function CategoryCover({ categorySlug, title, compact = false }: { catego
         <span />
         <span />
         <span />
+        <span />
       </div>
       <div className="cover-content">
         <span>{category?.name ?? "博彩资讯"}</span>
-        <strong>{title}</strong>
+        {title ? <strong>{title}</strong> : null}
       </div>
     </div>
   );
@@ -362,7 +375,7 @@ export function ArticleCard({ article, featured = false }: { article: (typeof ar
   return (
     <article className={featured ? "article-card featured" : "article-card"}>
       <Link href={`/article/${article.slug}`} aria-label={article.title}>
-        <CategoryCover categorySlug={article.category} title={article.title} compact={!featured} />
+        <CategoryCover categorySlug={article.category} title="" compact={!featured} />
       </Link>
       <div className="article-card-body">
         <div className="article-card-top">

@@ -588,8 +588,9 @@ export const platforms: Platform[] = [
 export const legalPages = [
   { href: "/about", label: "关于我们" },
   { href: "/disclaimer", label: "免责声明" },
+  { href: "/privacy", label: "隐私政策" },
+  { href: "/terms", label: "服务条款" },
   { href: "/sitemap.xml", label: "站点地图" },
-  { href: "/robots.txt", label: "Robots" },
 ];
 
 export function categoryBySlug(slug: string) {

@@ -10,6 +10,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/rankings",
     "/about",
     "/disclaimer",
+    "/privacy",
+    "/terms",
     ...categories.map((category) => `/category/${category.slug}`),
     ...topicPages.map((topic) => `/topic/${topic.slug}`),
     ...articles.map((article) => `/article/${article.slug}`),

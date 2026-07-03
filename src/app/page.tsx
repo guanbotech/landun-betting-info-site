@@ -30,9 +30,9 @@ export default function Home() {
                 <span>平台资料</span>
                 <span>入口核对指南</span>
               </div>
-              <h1>亚洲博彩资讯与平台风险资料库</h1>
+              <h1>亚洲博彩资讯与风险资料库</h1>
               <p>
-                这里记录电竞、体育、扑克、棋牌相关的公开资料和风险提醒。先看规则、入口和限制条件，再判断要不要继续了解。
+                这里整理电竞、体育、扑克、棋牌游戏相关的公开资料、平台信息与风险提醒。访问前建议先核对规则、入口状态和限制条件。
               </p>
               <div className="mt-7 flex flex-wrap gap-3">
                 <Link className="btn-primary" href="/category/risk-warning">
@@ -50,19 +50,23 @@ export default function Home() {
               <p>重点看域名是否正常、条款是否写清楚、提款和活动有没有额外限制。</p>
               <ul className="observer-list">
                 <li>
-                  <span>虚假入口识别</span>
+                  <span className="observer-index">01</span>
+                  <span className="observer-text">虚假入口识别</span>
                   <strong>域名 / 证书</strong>
                 </li>
                 <li>
-                  <span>平台资料更新</span>
+                  <span className="observer-index">02</span>
+                  <span className="observer-text">平台资料更新</span>
                   <strong>{platforms.length} 个资料卡</strong>
                 </li>
                 <li>
-                  <span>充值提现风险</span>
+                  <span className="observer-index">03</span>
+                  <span className="observer-text">充值提现风险</span>
                   <strong>费用 / 限制</strong>
                 </li>
                 <li>
-                  <span>最新风险提醒</span>
+                  <span className="observer-index">04</span>
+                  <span className="observer-text">最新风险提醒</span>
                   <strong>{articles.filter((item) => item.category === "risk-warning").length || 4} 条</strong>
                 </li>
               </ul>
@@ -73,7 +77,7 @@ export default function Home() {
         <section className="site-container home-lead-grid">
           <ArticleCard article={featured} featured />
           <aside className="news-rail">
-            <SectionTitle eyebrow="快讯 / 风险提醒" title="编辑关注" />
+            <SectionTitle eyebrow="快讯 / 风险提醒" title="今日关注" />
             {latest.slice(0, 4).map((article) => (
               <Link className="headline-link" href={`/article/${article.slug}`} key={article.slug}>
                 <span>
