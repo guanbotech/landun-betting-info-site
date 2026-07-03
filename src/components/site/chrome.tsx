@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import {
@@ -75,15 +76,10 @@ const navDropdowns = [
 ];
 
 const categoryImagePaths: Record<string, string> = {
-  "esports-betting": "/images/categories/esports-betting.webp",
-  "sports-betting": "/images/categories/sports-betting.webp",
-  poker: "/images/categories/poker.webp",
-  "online-games": "/images/categories/card-games.webp",
-  "risk-warning": "/images/categories/risk-warning.webp",
-  "platform-reviews": "/images/categories/platform-review.webp",
-  rankings: "/images/categories/rankings.webp",
-  "betting-guide": "/images/categories/betting-guide.webp",
+  // Add real editorial images here when available. Until then, covers use CSS/SVG-style abstract graphics.
 };
+
+const brandLogoPath = "";
 
 const plainNavItems = [
   { href: "/category/poker", label: "德州扑克" },
@@ -96,14 +92,17 @@ function BrandLogo({ variant = "header" }: { variant?: "header" | "footer" }) {
 
   return (
     <span className={`brand-logo-combo ${variant}`}>
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        className={imageLoaded ? "brand-logo-image is-loaded" : "brand-logo-image is-probing"}
-        src="/images/brand/logo-horizontal.webp"
-        alt=""
-        aria-hidden="true"
-        onLoad={() => setImageLoaded(true)}
-      />
+      {brandLogoPath ? (
+        <Image
+          className={imageLoaded ? "brand-logo-image is-loaded" : "brand-logo-image is-probing"}
+          src={brandLogoPath}
+          alt=""
+          aria-hidden="true"
+          width={192}
+          height={44}
+          onLoad={() => setImageLoaded(true)}
+        />
+      ) : null}
       <span className={imageLoaded ? "brand-fallback is-hidden" : "brand-fallback"}>
         <span className="brand-mark">
           <ShieldAlert className="size-5" aria-hidden="true" />
@@ -348,12 +347,13 @@ export function CategoryCover({ categorySlug, title, compact = false }: { catego
   return (
     <div className={`category-cover cover-${cover} ${compact ? "compact" : ""}`}>
       {imagePath ? (
-        // eslint-disable-next-line @next/next/no-img-element
-        <img
+        <Image
           className={imageLoaded ? "category-cover-image is-loaded" : "category-cover-image is-probing"}
           src={imagePath}
           alt=""
           aria-hidden="true"
+          fill
+          sizes="(min-width: 1024px) 50vw, 100vw"
           onLoad={() => setImageLoaded(true)}
         />
       ) : null}
