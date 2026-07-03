@@ -3,8 +3,8 @@ import { Breadcrumbs, PlatformCard, RiskNotice, SiteFooter, SiteHeader, StatCard
 import { platforms } from "@/lib/site-data";
 
 export const metadata: Metadata = {
-  title: "博彩监管",
-  description: "按平台资料情况、规则说明、内容分类和更新时间列出的博彩平台资料。",
+  title: "平台资料榜",
+  description: "按资料完整度、规则说明、入口核对状态、风险等级和更新时间整理平台资料，仅用于资料索引，不构成平台背书。",
   alternates: { canonical: "/rankings" },
 };
 
@@ -15,12 +15,12 @@ export default function RankingsPage() {
     <>
       <SiteHeader />
       <main className="site-container py-10">
-        <Breadcrumbs items={[{ label: "博彩监管" }]} />
+        <Breadcrumbs items={[{ label: "平台资料榜" }]} />
         <section className="ranking-hero">
-          <p className="eyebrow">博彩监管资料</p>
-          <h1>博彩监管</h1>
+          <p className="eyebrow">平台资料榜</p>
+          <h1>平台资料榜</h1>
           <p className="mt-4 max-w-4xl text-base leading-8 text-[#475569]">
-            这里按资料情况、规则说明、内容分类和更新时间列出平台。榜单只方便查资料，不构成平台背书，也不代表使用建议。
+            按资料完整度、规则说明、入口核对状态、风险等级和更新时间整理平台资料，仅用于资料索引，不构成平台背书。
           </p>
           <p className="mt-3 text-sm font-bold text-[#64748B]">更新时间：2026-06-30</p>
           <div className="channel-stats">

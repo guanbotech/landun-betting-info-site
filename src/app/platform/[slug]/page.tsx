@@ -37,7 +37,7 @@ export default async function PlatformPage({ params }: Props) {
     <>
       <SiteHeader />
       <main className="site-container py-10">
-        <Breadcrumbs items={[{ label: "平台资料库", href: "/rankings" }, { label: platform.name }]} />
+        <Breadcrumbs items={[{ label: "平台资料榜", href: "/rankings" }, { label: platform.name }]} />
         <article className="platform-detail">
           <header className="platform-header">
             <div className="platform-identity">

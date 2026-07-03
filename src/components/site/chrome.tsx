@@ -31,7 +31,8 @@ const navItems = [
   { href: "/category/online-games", label: "棋牌游戏" },
   { href: "/category/poker", label: "德州扑克" },
   { href: "/category/platform-reviews", label: "博彩资讯" },
-  { href: "/rankings", label: "博彩监管" },
+  { href: "/rankings", label: "平台资料榜" },
+  { href: "/category/risk-warning", label: "风险提醒" },
 ];
 
 const navDropdowns = [
@@ -44,7 +45,7 @@ const navDropdowns = [
       { label: "NBA", href: "/topic/nba" },
       { label: "F1", href: "/topic/f1" },
       { label: "中超", href: "/topic/chinese-super-league" },
-      { label: "体育博彩监管", href: "/topic/sports-betting-regulation" },
+      { label: "体育平台规则", href: "/topic/sports-betting-regulation" },
     ],
   },
   {
@@ -87,7 +88,7 @@ const categoryImagePaths: Record<string, string> = {
 const plainNavItems = [
   { href: "/category/poker", label: "德州扑克" },
   { href: "/category/platform-reviews", label: "博彩资讯" },
-  { href: "/rankings", label: "博彩监管" },
+  { href: "/rankings", label: "平台资料榜" },
 ];
 
 function BrandLogo({ variant = "header" }: { variant?: "header" | "footer" }) {
@@ -118,6 +119,7 @@ function BrandLogo({ variant = "header" }: { variant?: "header" | "footer" }) {
 
 export function SiteHeader() {
   const pathname = usePathname();
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const isActive = (href: string) => (href === "/" ? pathname === "/" : pathname.startsWith(href));
 
   return (
@@ -131,35 +133,39 @@ export function SiteHeader() {
             首页
           </Link>
           {navDropdowns.map((group) => (
-            <details
-              className={isActive(group.href) ? "nav-dropdown active" : "nav-dropdown"}
+            <div
+              className={[
+                "nav-dropdown",
+                isActive(group.href) ? "active" : "",
+                openDropdown === group.label ? "is-open" : "",
+              ].filter(Boolean).join(" ")}
               key={group.label}
-              onMouseLeave={(event) => {
-                event.currentTarget.open = false;
-              }}
-              onToggle={(event) => {
-                if (!event.currentTarget.open) return;
-                document.querySelectorAll<HTMLDetailsElement>(".nav-dropdown[open]").forEach((item) => {
-                  if (item !== event.currentTarget) item.open = false;
-                });
-              }}
+              onMouseEnter={() => setOpenDropdown(group.label)}
+              onMouseLeave={() => setOpenDropdown(null)}
             >
-              <summary className="nav-dropdown-trigger">
+              <button
+                className="nav-dropdown-trigger"
+                type="button"
+                aria-expanded={openDropdown === group.label}
+                onClick={() => setOpenDropdown(openDropdown === group.label ? null : group.label)}
+              >
                 {group.label}
                 <ChevronDown className="size-4" aria-hidden="true" />
-              </summary>
-              <div className="nav-dropdown-menu" aria-label={`${group.label}栏目`}>
-                <span className="nav-dropdown-rail" aria-hidden="true" />
-                <div className="nav-dropdown-list">
-                  <Link href={group.href}>{group.label}首页</Link>
-                  {group.items.map((item) => (
-                    <Link key={`${group.label}-${item.label}`} href={item.href}>
-                      {item.label}
-                    </Link>
-                  ))}
+              </button>
+              {openDropdown === group.label ? (
+                <div className="nav-dropdown-menu" aria-label={`${group.label}栏目`}>
+                  <span className="nav-dropdown-rail" aria-hidden="true" />
+                  <div className="nav-dropdown-list">
+                    <Link href={group.href}>{group.label}首页</Link>
+                    {group.items.map((item) => (
+                      <Link key={`${group.label}-${item.label}`} href={item.href}>
+                        {item.label}
+                      </Link>
+                    ))}
+                  </div>
                 </div>
-              </div>
-            </details>
+              ) : null}
+            </div>
           ))}
           {plainNavItems.map((item) => (
             <Link key={item.href} className={isActive(item.href) ? "nav-link active" : "nav-link"} href={item.href}>
@@ -191,7 +197,7 @@ export function SiteHeader() {
 export function SiteFooter() {
   const groups = [
     { title: "核心栏目", links: categories.slice(0, 4).map((item) => ({ href: `/category/${item.slug}`, label: item.name })) },
-    { title: "平台资料", links: [{ href: "/rankings", label: "博彩监管" }, ...platforms.slice(0, 3).map((item) => ({ href: `/platform/${item.slug}`, label: item.name }))] },
+    { title: "平台资料", links: [{ href: "/rankings", label: "平台资料榜" }, ...platforms.slice(0, 3).map((item) => ({ href: `/platform/${item.slug}`, label: item.name }))] },
     { title: "风险与指南", links: categories.slice(4, 6).map((item) => ({ href: `/category/${item.slug}`, label: item.name })) },
     { title: "法律页面", links: legalPages },
   ];
@@ -250,14 +256,14 @@ export function SectionTitle({ eyebrow, title, description }: { eyebrow?: string
   );
 }
 
-export function RiskNotice({ compact = false }: { compact?: boolean }) {
+export function RiskNotice({ compact = false, title = "风险提醒" }: { compact?: boolean; title?: string | null }) {
   return (
     <aside className={compact ? "risk-box compact" : "risk-box"}>
       <div className="risk-icon">
         <AlertTriangle className="size-5" aria-hidden="true" />
       </div>
       <div>
-        <h2>风险提醒</h2>
+        {title ? <h2>{title}</h2> : null}
         <p>
           博彩存在财务损失和成瘾风险。阅读平台资料前，请核对所在地法律、年龄限制、平台规则、费用条款和自我限制工具。
         </p>
@@ -459,11 +465,11 @@ export function RankingTeaser() {
     <section className="media-band">
       <div className="site-container ranking-teaser">
         <div className="ranking-teaser-head">
-          <p className="eyebrow">博彩监管</p>
+          <p className="eyebrow">平台资料榜</p>
           <h2>按资料情况和规则说明列出平台</h2>
           <p>这里按资料情况、规则说明、内容分类和更新时间列出平台，只方便查资料，不代表使用建议。</p>
           <Link className="btn-primary" href="/rankings">
-            查看博彩监管
+            查看平台资料榜
           </Link>
         </div>
         <div className="ranking-mini-list">
@@ -494,7 +500,7 @@ export function OfferRules() {
 }
 
 export function CategoryIcon({ label }: { label: string }) {
-  const Icon = label === "博彩监管" ? Trophy : label.includes("风险") ? ShieldAlert : label.includes("指南") ? ClipboardCheck : FileText;
+  const Icon = label === "平台资料榜" ? Trophy : label.includes("风险") ? ShieldAlert : label.includes("指南") ? ClipboardCheck : FileText;
   return (
     <span className="category-icon">
       <Icon className="size-5" aria-hidden="true" />

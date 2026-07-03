@@ -40,7 +40,7 @@ export default function Home() {
                   查看风险提醒
                 </Link>
                 <Link className="btn-secondary" href="/rankings">
-                  浏览平台资料
+                  浏览平台资料榜
                 </Link>
               </div>
             </div>
@@ -132,8 +132,8 @@ export default function Home() {
         </section>
 
         <section className="site-container py-6">
-          <SectionTitle eyebrow="风险提醒" title="入口、账户、支付和规则" />
-          <RiskNotice />
+          <SectionTitle eyebrow="风险提醒" title="入口、账户、支付和规则都要提前核对" />
+          <RiskNotice title={null} />
         </section>
 
         <RankingTeaser />
