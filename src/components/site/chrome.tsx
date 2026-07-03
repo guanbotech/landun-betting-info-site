@@ -76,7 +76,14 @@ const navDropdowns = [
 ];
 
 const categoryImagePaths: Record<string, string> = {
-  // Add real editorial images here when available. Until then, covers use CSS/SVG-style abstract graphics.
+  "esports-betting": "/images/categories/esports-betting.webp",
+  "sports-betting": "/images/categories/sports-betting.webp",
+  poker: "/images/categories/poker.webp",
+  "online-games": "/images/categories/card-games.webp",
+  "risk-warning": "/images/categories/risk-warning.webp",
+  "platform-reviews": "/images/categories/platform-review.webp",
+  rankings: "/images/categories/rankings.webp",
+  "betting-guide": "/images/categories/betting-guide.webp",
 };
 
 const brandLogoPath = "";
@@ -342,19 +349,26 @@ export function CategoryCover({ categorySlug, title, compact = false }: { catego
   const cover = category?.cover ?? "guide";
   const Icon = coverIcons[cover as keyof typeof coverIcons] ?? BookOpen;
   const imagePath = categoryImagePaths[categorySlug];
-  const [imageLoaded, setImageLoaded] = useState(false);
+  const hasImage = Boolean(imagePath);
 
   return (
-    <div className={`category-cover cover-${cover} ${compact ? "compact" : ""}`}>
-      {imagePath ? (
+    <div
+      className={[
+        "category-cover",
+        `cover-${cover}`,
+        compact ? "compact" : "",
+        hasImage ? "has-image" : "",
+      ].filter(Boolean).join(" ")}
+    >
+      {hasImage ? (
         <Image
-          className={imageLoaded ? "category-cover-image is-loaded" : "category-cover-image is-probing"}
+          className="category-cover-image"
           src={imagePath}
           alt=""
           aria-hidden="true"
           fill
           sizes="(min-width: 1024px) 50vw, 100vw"
-          onLoad={() => setImageLoaded(true)}
+          unoptimized
         />
       ) : null}
       <div className="cover-scrim" aria-hidden="true" />
