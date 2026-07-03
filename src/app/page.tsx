@@ -32,7 +32,7 @@ export default function Home() {
               </div>
               <h1>亚洲博彩资讯与平台风险资料库</h1>
               <p>
-                聚合电竞博彩、体育博彩、德州扑克、棋牌游戏、平台资料、风险提醒与入口核对信息，帮助用户在访问前先了解平台规则、资料完整度和潜在风险。
+                聚合电竞博彩、体育博彩、德州扑克、在线游戏、平台资料、风险提醒与入口核对信息，帮助用户在访问前先了解平台规则、资料完整度和潜在风险。
               </p>
               <div className="mt-7 flex flex-wrap gap-3">
                 <Link className="btn-primary" href="/category/risk-warning">
@@ -90,7 +90,7 @@ export default function Home() {
           <SectionTitle
             eyebrow="热门平台资料横向榜单"
             title="平台资料库"
-            description="整理平台类型、支持内容、资料完整度、规则公开度、更新时间和风险等级，方便访问前核对。"
+            description="统一展示平台类型、支持内容、资料完整度、规则公开度、更新时间和风险等级。"
           />
           <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
             {platforms.map((platform, index) => (
@@ -104,7 +104,7 @@ export default function Home() {
             <SectionTitle
               eyebrow="四大频道入口"
               title="按场景进入资讯频道"
-              description="电竞、体育、扑克和棋牌游戏分别沉淀规则说明、资料核对、平台信息和风险提醒。"
+              description="电竞、体育、扑克和在线游戏分别沉淀规则说明、资料核对、平台信息和风险提醒。"
             />
             <div className="channel-grid">
               {keyCategories.map((category) => (
@@ -138,9 +138,9 @@ export default function Home() {
         <section className="site-container py-10">
           <div className="guide-grid">
             <div>
-              <p className="eyebrow">博彩资讯</p>
+              <p className="eyebrow">博彩指南</p>
               <h2>访问前先看规则、资料和风险</h2>
-              <p>资讯栏目整理术语解释、预算管理、冷静期、自我限制、平台资料核对和常见问题。</p>
+              <p>指南栏目整理术语解释、预算管理、冷静期、自我限制、平台资料核对和常见问题。</p>
             </div>
             <Link className="btn-primary" href="/article/guide-responsible-gambling">
               阅读全文
@@ -150,16 +150,10 @@ export default function Home() {
 
         <section className="site-container pb-12">
           <div className="disclaimer-strip">
-            <span className="disclaimer-icon">
-              <ShieldCheck className="size-5" aria-hidden="true" />
-            </span>
-            <div>
-              <h2>18+ 合规与风险声明</h2>
-              <p>
-                本站内容仅作资讯整理与风险教育用途，不提供投注服务，不保证任何结果。请遵守所在地法律法规，理性评估财务风险。
-              </p>
-            </div>
-            <span className="disclaimer-badge">资料参考</span>
+            <ShieldCheck className="size-5 shrink-0" aria-hidden="true" />
+            <p>
+              18+ 免责声明：本站内容仅作资讯与风险教育用途，不提供投注服务，不保证任何结果。请遵守所在地法律法规，理性评估财务风险。
+            </p>
           </div>
         </section>
       </main>

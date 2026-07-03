@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
 import {
   Activity,
   AlertTriangle,
@@ -24,13 +23,8 @@ import {
 import { articles, categories, legalPages, platforms, site } from "@/lib/site-data";
 
 const navItems = [
-  { href: "/", label: "首页" },
-  { href: "/category/sports-betting", label: "体育博彩" },
-  { href: "/category/esports-betting", label: "电子竞技" },
-  { href: "/category/online-games", label: "棋牌游戏" },
-  { href: "/category/poker", label: "德州扑克" },
-  { href: "/category/platform-reviews", label: "博彩资讯" },
-  { href: "/rankings", label: "博彩监管" },
+  ...categories.slice(0, 7).map((category) => ({ href: `/category/${category.slug}`, label: category.name })),
+  { href: "/rankings", label: "平台排行榜" },
 ];
 
 const navDropdowns = [
@@ -38,94 +32,62 @@ const navDropdowns = [
     label: "体育博彩",
     href: "/category/sports-betting",
     items: [
-      { label: "欧冠", href: "/topic/champions-league" },
-      { label: "英超", href: "/topic/premier-league" },
-      { label: "NBA", href: "/topic/nba" },
-      { label: "F1", href: "/topic/f1" },
-      { label: "中超", href: "/topic/chinese-super-league" },
-      { label: "体育博彩监管", href: "/topic/sports-betting-regulation" },
+      { label: "欧冠", href: "/category/sports-betting" },
+      { label: "英超", href: "/category/sports-betting" },
+      { label: "NBA", href: "/category/sports-betting" },
+      { label: "F1", href: "/category/sports-betting" },
+      { label: "中超", href: "/category/sports-betting" },
+      { label: "体育平台排名", href: "/rankings" },
     ],
   },
   {
     label: "电子竞技",
     href: "/category/esports-betting",
     items: [
-      { label: "英雄联盟", href: "/topic/league-of-legends" },
-      { label: "CS2", href: "/topic/cs2" },
-      { label: "DOTA2", href: "/topic/dota2" },
-      { label: "王者荣耀", href: "/topic/honor-of-kings" },
-      { label: "无畏契约", href: "/topic/valorant" },
-      { label: "穿越火线", href: "/topic/crossfire" },
+      { label: "英雄联盟", href: "/category/esports-betting" },
+      { label: "CS2", href: "/category/esports-betting" },
+      { label: "DOTA2", href: "/category/esports-betting" },
+      { label: "王者荣耀", href: "/category/esports-betting" },
+      { label: "无畏契约", href: "/category/esports-betting" },
+      { label: "穿越火线", href: "/category/esports-betting" },
     ],
   },
   {
     label: "棋牌游戏",
     href: "/category/online-games",
     items: [
-      { label: "牛牛在线游戏", href: "/topic/niuniu-online" },
-      { label: "三公在线游戏", href: "/topic/sangong-online" },
-      { label: "百家乐在线游戏", href: "/topic/baccarat-online" },
-      { label: "炸金花在线", href: "/topic/golden-flower-online" },
-      { label: "龙虎斗在线", href: "/topic/dragon-tiger-online" },
-      { label: "斗地主在线", href: "/topic/doudizhu-online" },
+      { label: "牛牛在线游戏", href: "/category/online-games" },
+      { label: "三公在线游戏", href: "/category/online-games" },
+      { label: "百家乐在线游戏", href: "/category/online-games" },
+      { label: "炸金花在线", href: "/category/online-games" },
+      { label: "龙虎斗在线", href: "/category/online-games" },
+      { label: "斗地主在线", href: "/category/online-games" },
     ],
   },
 ];
 
-const categoryImagePaths: Record<string, string> = {
-  "esports-betting": "/images/categories/esports-betting.webp",
-  "sports-betting": "/images/categories/sports-betting.webp",
-  poker: "/images/categories/poker.webp",
-  "online-games": "/images/categories/card-games.webp",
-  "risk-warning": "/images/categories/risk-warning.webp",
-  "platform-reviews": "/images/categories/platform-review.webp",
-  rankings: "/images/categories/rankings.webp",
-  "betting-guide": "/images/categories/betting-guide.webp",
-};
-
 const plainNavItems = [
   { href: "/category/poker", label: "德州扑克" },
-  { href: "/category/platform-reviews", label: "博彩资讯" },
-  { href: "/rankings", label: "博彩监管" },
+  { href: "/category/risk-warning", label: "风险提醒" },
+  { href: "/category/guides", label: "博彩指南" },
+  { href: "/category/platform-reviews", label: "平台评测" },
+  { href: "/rankings", label: "平台排行榜" },
 ];
-
-function BrandLogo({ variant = "header" }: { variant?: "header" | "footer" }) {
-  const [imageLoaded, setImageLoaded] = useState(false);
-
-  return (
-    <span className={`brand-logo-combo ${variant}`}>
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        className={imageLoaded ? "brand-logo-image is-loaded" : "brand-logo-image is-probing"}
-        src="/images/brand/logo-horizontal.webp"
-        alt=""
-        aria-hidden="true"
-        onLoad={() => setImageLoaded(true)}
-      />
-      <span className={imageLoaded ? "brand-fallback is-hidden" : "brand-fallback"}>
-        <span className="brand-mark">
-          <ShieldAlert className="size-5" aria-hidden="true" />
-        </span>
-        <span className="brand-text min-w-0">
-          <span className="brand-name">{site.name}</span>
-          <span className="brand-subtitle">博彩资讯媒体 · 平台资料库</span>
-        </span>
-      </span>
-    </span>
-  );
-}
 
 export function SiteHeader() {
   return (
     <header className="site-header">
       <div className="site-header-inner">
         <Link href="/" className="brand-lockup" aria-label={site.name}>
-          <BrandLogo />
+          <span className="brand-mark">
+            <ShieldAlert className="size-5" aria-hidden="true" />
+          </span>
+          <span className="min-w-0">
+            <span className="brand-name">{site.name}</span>
+            <span className="brand-subtitle">博彩资讯媒体 · 平台资料库</span>
+          </span>
         </Link>
         <nav className="desktop-nav" aria-label="主导航">
-          <Link className="nav-link" href="/">
-            首页
-          </Link>
           {navDropdowns.map((group) => (
             <details
               className="nav-dropdown"
@@ -187,7 +149,7 @@ export function SiteHeader() {
 export function SiteFooter() {
   const groups = [
     { title: "核心栏目", links: categories.slice(0, 4).map((item) => ({ href: `/category/${item.slug}`, label: item.name })) },
-    { title: "平台资料", links: [{ href: "/rankings", label: "博彩监管" }, ...platforms.slice(0, 3).map((item) => ({ href: `/platform/${item.slug}`, label: item.name }))] },
+    { title: "平台资料", links: [{ href: "/rankings", label: "平台排行榜" }, ...platforms.slice(0, 3).map((item) => ({ href: `/platform/${item.slug}`, label: item.name }))] },
     { title: "风险与指南", links: categories.slice(4, 6).map((item) => ({ href: `/category/${item.slug}`, label: item.name })) },
     { title: "法律页面", links: legalPages },
   ];
@@ -197,10 +159,16 @@ export function SiteFooter() {
       <div className="footer-grid">
         <div>
           <div className="footer-brand">
-            <BrandLogo variant="footer" />
+            <span className="brand-mark footer">
+              <ShieldAlert className="size-5" aria-hidden="true" />
+            </span>
+            <div>
+              <p>{site.name}</p>
+              <span>中文博彩资讯、资料索引与风险教育站</span>
+            </div>
           </div>
           <p className="footer-copy">
-            博彩资讯、平台资料与风险提醒整理站。内容仅供资料参考，不提供投注服务。
+            聚合电竞博彩、体育博彩、德州扑克、在线游戏、平台资料、风险提醒与入口核对信息。内容以资料整理和风险教育为核心。
           </p>
           <span className="footer-age">18+ 风险提醒</span>
         </div>
@@ -326,22 +294,9 @@ export function CategoryCover({ categorySlug, title, compact = false }: { catego
   const category = categories.find((item) => item.slug === categorySlug);
   const cover = category?.cover ?? "guide";
   const Icon = coverIcons[cover as keyof typeof coverIcons] ?? BookOpen;
-  const imagePath = categoryImagePaths[categorySlug];
-  const [imageLoaded, setImageLoaded] = useState(false);
 
   return (
     <div className={`category-cover cover-${cover} ${compact ? "compact" : ""}`}>
-      {imagePath ? (
-        // eslint-disable-next-line @next/next/no-img-element
-        <img
-          className={imageLoaded ? "category-cover-image is-loaded" : "category-cover-image is-probing"}
-          src={imagePath}
-          alt=""
-          aria-hidden="true"
-          onLoad={() => setImageLoaded(true)}
-        />
-      ) : null}
-      <div className="cover-scrim" aria-hidden="true" />
       <div className="cover-grid" aria-hidden="true" />
       <div className="cover-symbol">
         <Icon className="size-6" aria-hidden="true" />
@@ -352,7 +307,7 @@ export function CategoryCover({ categorySlug, title, compact = false }: { catego
         <span />
       </div>
       <div className="cover-content">
-        <span>{category?.name ?? "博彩资讯"}</span>
+        <span>{category?.name ?? "博彩指南"}</span>
         <strong>{title}</strong>
       </div>
     </div>
@@ -396,10 +351,9 @@ export function PlatformCard({ platform, rank }: { platform: (typeof platforms)[
 
   return (
     <article className={rank ? "platform-card ranked" : "platform-card"}>
-      {rank ? <span className="platform-rank-flag">#{rank}</span> : null}
       <div className="platform-card-head">
         <div className="platform-logo large">
-          <span>{platform.name.slice(0, 1)}</span>
+          <span>{rank ? rank : platform.name.slice(0, 1)}</span>
         </div>
         <div className="min-w-0 flex-1">
           <div className="platform-title-row">
@@ -409,7 +363,7 @@ export function PlatformCard({ platform, rank }: { platform: (typeof platforms)[
           <p className="platform-type">{platform.type}</p>
         </div>
       </div>
-      <dl className="platform-metrics priority">
+      <dl className="platform-metrics">
         <div>
           <dt>资料完整度</dt>
           <dd>{completeness}</dd>
@@ -448,13 +402,13 @@ export function RankingTeaser() {
     <section className="media-band">
       <div className="site-container ranking-teaser">
         <div className="ranking-teaser-head">
-          <p className="eyebrow">博彩监管</p>
+          <p className="eyebrow">平台排行榜</p>
           <h2>按资料完整度和规则透明度整理平台列表</h2>
           <p>
             榜单仅基于资料完整度、规则透明度、内容分类和更新时间整理，仅用于资料索引，不构成平台背书。
           </p>
           <Link className="btn-primary" href="/rankings">
-            查看博彩监管
+            查看排行榜
           </Link>
         </div>
         <div className="ranking-mini-list">
@@ -474,7 +428,7 @@ export function OfferRules() {
         <div>
           <p className="eyebrow risk">活动规则提醒</p>
           <h2>活动资料先看限制条件，再看适用范围</h2>
-          <p>查看活动资料时，建议先核对更新时间、有效投注、流水要求、地区限制、账户限制和取消条件。</p>
+          <p>活动资料只作为规则索引展示，重点记录更新时间、有效投注、流水要求、地区限制、账户限制和取消条件。</p>
         </div>
         <Link className="btn-secondary" href="/article/online-games-offer-terms">
           查看规则
@@ -485,7 +439,7 @@ export function OfferRules() {
 }
 
 export function CategoryIcon({ label }: { label: string }) {
-  const Icon = label === "博彩监管" ? Trophy : label.includes("风险") ? ShieldAlert : label.includes("指南") ? ClipboardCheck : FileText;
+  const Icon = label === "平台排行榜" ? Trophy : label.includes("风险") ? ShieldAlert : label.includes("指南") ? ClipboardCheck : FileText;
   return (
     <span className="category-icon">
       <Icon className="size-5" aria-hidden="true" />

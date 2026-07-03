@@ -3,8 +3,8 @@ import { Breadcrumbs, PlatformCard, RiskNotice, SiteFooter, SiteHeader, StatCard
 import { platforms } from "@/lib/site-data";
 
 export const metadata: Metadata = {
-  title: "博彩监管",
-  description: "按平台资料完整度、规则透明度、内容分类和更新时间整理的博彩监管观察与平台资料索引。",
+  title: "平台排行榜",
+  description: "按平台资料完整度、规则透明度、内容分类和更新时间整理的平台资料索引榜单。",
   alternates: { canonical: "/rankings" },
 };
 
@@ -15,10 +15,10 @@ export default function RankingsPage() {
     <>
       <SiteHeader />
       <main className="site-container py-10">
-        <Breadcrumbs items={[{ label: "博彩监管" }]} />
+        <Breadcrumbs items={[{ label: "平台排行榜" }]} />
         <section className="ranking-hero">
-          <p className="eyebrow">博彩监管资料索引</p>
-          <h1>博彩监管</h1>
+          <p className="eyebrow">平台资料索引榜单</p>
+          <h1>平台排行榜</h1>
           <p className="mt-4 max-w-4xl text-base leading-8 text-[#475569]">
             榜单仅基于资料完整度、规则透明度、内容分类和更新时间整理，仅用于资料索引，不构成平台背书。
           </p>
@@ -41,7 +41,7 @@ export default function RankingsPage() {
             <button>电竞</button>
             <button>体育</button>
             <button>扑克</button>
-            <button>棋牌</button>
+            <button>在线游戏</button>
           </div>
           <div>
             <span>风险等级</span>
@@ -55,7 +55,7 @@ export default function RankingsPage() {
             <button>全部内容</button>
             <button>赛事</button>
             <button>扑克</button>
-            <button>棋牌</button>
+            <button>在线游戏</button>
           </div>
           <div>
             <span>更新时间</span>
