@@ -65,23 +65,23 @@ export default async function TopicPage({ params }: Props) {
             <h1>{topic.title}</h1>
             <p>{topic.description}</p>
             <div className="topic-pill-row">
-              <span>资料整理</span>
-              <span>规则说明</span>
-              <span>风险提醒</span>
+              <span>资料来源</span>
+              <span>规则条款</span>
+              <span>风险点</span>
             </div>
           </div>
-          <CategoryCover categorySlug={topic.parentSlug} title={`${topic.title}资料专题`} compact />
+          <CategoryCover categorySlug={topic.parentSlug} title={`${topic.title}资料`} compact />
         </section>
 
         <div className="mt-8 grid gap-8 lg:grid-cols-[minmax(0,1fr)_330px]">
           <div className="min-w-0">
             <section>
-              <SectionTitle eyebrow="专题重点" title={`${topic.title}访问前核对`} />
+              <SectionTitle eyebrow="先看这里" title={`${topic.title}要点`} />
               <div className="topic-grid">
                 {topic.highlights.map((item) => (
                   <article className="module-card" key={item}>
                     <span>{item}</span>
-                    <p>围绕 {topic.title} 的资料、规则、时间和平台信息建立访问前核对清单。</p>
+                    <p>把这一项单独拿出来看，避免和其它规则混在一起。</p>
                   </article>
                 ))}
               </div>
@@ -93,7 +93,7 @@ export default async function TopicPage({ params }: Props) {
                 {topic.risks.map((item) => (
                   <div key={item}>
                     <strong>{item}</strong>
-                    <p>阅读资料前请确认信息来源、更新时间、平台规则和所在地法律法规。</p>
+                    <p>先看来源和更新时间，再看平台自己的规则。</p>
                   </div>
                 ))}
               </div>

@@ -27,12 +27,12 @@ export default function Home() {
             <div className="hero-copy">
               <div className="hero-badges" aria-label="站点标签">
                 <span>18+ 风险提醒</span>
-                <span>平台资料整理</span>
+                <span>平台资料</span>
                 <span>入口核对指南</span>
               </div>
               <h1>亚洲博彩资讯与平台风险资料库</h1>
               <p>
-                聚合电竞博彩、体育博彩、德州扑克、棋牌游戏、平台资料、风险提醒与入口核对信息，帮助用户在访问前先了解平台规则、资料完整度和潜在风险。
+                这里记录电竞、体育、扑克、棋牌相关的公开资料和风险提醒。先看规则、入口和限制条件，再判断要不要继续了解。
               </p>
               <div className="mt-7 flex flex-wrap gap-3">
                 <Link className="btn-primary" href="/category/risk-warning">
@@ -47,7 +47,7 @@ export default function Home() {
             <aside className="risk-observer" aria-label="今日风险观察">
               <p className="eyebrow risk">今日风险观察</p>
               <h2>访问前先核对入口、规则与资金限制</h2>
-              <p>站内按资料完整度、规则透明度、入口核对状态和风险提醒组织内容。</p>
+              <p>重点看域名是否正常、条款是否写清楚、提款和活动有没有额外限制。</p>
               <ul className="observer-list">
                 <li>
                   <span>虚假入口识别</span>
@@ -88,9 +88,9 @@ export default function Home() {
 
         <section className="site-container py-6">
           <SectionTitle
-            eyebrow="热门平台资料横向榜单"
-            title="平台资料库"
-            description="整理平台类型、支持内容、资料完整度、规则公开度、更新时间和风险等级，方便访问前核对。"
+            eyebrow="平台资料"
+            title="先看资料，再看风险"
+            description="每个平台只列公开信息、更新时间和需要留意的条款，不做安全承诺。"
           />
           <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
             {platforms.map((platform, index) => (
@@ -102,9 +102,9 @@ export default function Home() {
         <section className="media-band">
           <div className="site-container">
             <SectionTitle
-              eyebrow="四大频道入口"
-              title="按场景进入资讯频道"
-              description="电竞、体育、扑克和棋牌游戏分别沉淀规则说明、资料核对、平台信息和风险提醒。"
+              eyebrow="栏目入口"
+              title="按你要查的内容进入"
+              description="电竞看版本和阵容，体育看赛程和结算，扑克和棋牌先看资金与活动限制。"
             />
             <div className="channel-grid">
               {keyCategories.map((category) => (
@@ -119,7 +119,7 @@ export default function Home() {
         </section>
 
         <section className="site-container py-8">
-          <SectionTitle eyebrow="最新文章流" title="最新规则、资料与风险内容" />
+          <SectionTitle eyebrow="最新内容" title="最近更新的规则和提醒" />
           <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
             {articles.map((article) => (
               <ArticleCard key={article.slug} article={article} />
@@ -128,7 +128,7 @@ export default function Home() {
         </section>
 
         <section className="site-container py-6">
-          <SectionTitle eyebrow="风险提醒专题" title="入口、账户、支付与规则风险" />
+          <SectionTitle eyebrow="风险提醒" title="入口、账户、支付和规则" />
           <RiskNotice />
         </section>
 
@@ -140,7 +140,7 @@ export default function Home() {
             <div>
               <p className="eyebrow">博彩资讯</p>
               <h2>访问前先看规则、资料和风险</h2>
-              <p>资讯栏目整理术语解释、预算管理、冷静期、自我限制、平台资料核对和常见问题。</p>
+              <p>如果已经开始追亏、借钱或频繁改预算，先停下来，不要继续往下走。</p>
             </div>
             <Link className="btn-primary" href="/article/guide-responsible-gambling">
               阅读全文
@@ -156,10 +156,10 @@ export default function Home() {
             <div>
               <h2>18+ 合规与风险声明</h2>
               <p>
-                本站内容仅作资讯整理与风险教育用途，不提供投注服务，不保证任何结果。请遵守所在地法律法规，理性评估财务风险。
+                本站只做资料记录和风险提醒，不提供投注服务，也不保证任何结果。请先确认所在地法律和个人财务风险。
               </p>
             </div>
-            <span className="disclaimer-badge">资料参考</span>
+            <span className="disclaimer-badge">自己核对</span>
           </div>
         </section>
       </main>

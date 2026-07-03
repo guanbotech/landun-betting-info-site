@@ -114,7 +114,7 @@ export default async function ArticlePage({ params }: Props) {
             <section className="legal-note">
               <h2>免责声明</h2>
               <p>
-                本文仅作资料整理、规则说明与风险教育用途，不构成投注、投资、法律或财务建议。博彩活动可能造成财务损失，请确认年龄限制和所在地法律法规。
+                本文只记录资料、规则和风险提醒，不提供投注、投资、法律或财务建议。博彩活动可能造成财务损失，请确认年龄限制和所在地法律法规。
               </p>
             </section>
           </article>

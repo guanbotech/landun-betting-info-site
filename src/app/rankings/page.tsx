@@ -4,7 +4,7 @@ import { platforms } from "@/lib/site-data";
 
 export const metadata: Metadata = {
   title: "博彩监管",
-  description: "按平台资料完整度、规则透明度、内容分类和更新时间整理的博彩监管观察与平台资料索引。",
+  description: "按平台资料情况、规则说明、内容分类和更新时间列出的博彩平台资料。",
   alternates: { canonical: "/rankings" },
 };
 
@@ -17,16 +17,16 @@ export default function RankingsPage() {
       <main className="site-container py-10">
         <Breadcrumbs items={[{ label: "博彩监管" }]} />
         <section className="ranking-hero">
-          <p className="eyebrow">博彩监管资料索引</p>
+          <p className="eyebrow">博彩监管资料</p>
           <h1>博彩监管</h1>
           <p className="mt-4 max-w-4xl text-base leading-8 text-[#475569]">
-            榜单仅基于资料完整度、规则透明度、内容分类和更新时间整理，仅用于资料索引，不构成平台背书。
+            这里按资料情况、规则说明、内容分类和更新时间列出平台。只方便查资料，不代表使用建议。
           </p>
           <p className="mt-3 text-sm font-bold text-[#64748B]">更新时间：2026-06-30</p>
           <div className="channel-stats">
             <StatCard label="收录平台" value={sorted.length} />
-            <StatCard label="筛选维度" value="4 项" />
-            <StatCard label="榜单性质" value="资料索引" />
+            <StatCard label="筛选项" value="4 项" />
+            <StatCard label="榜单性质" value="资料列表" />
           </div>
         </section>
 

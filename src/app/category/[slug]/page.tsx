@@ -43,9 +43,9 @@ export default async function CategoryPage({ params }: Props) {
   const featured = list[0];
   const latestArticles = [...list, ...articles.filter((article) => article.category !== slug)].slice(0, 4);
   const modules = categoryModules[slug] ?? [
-    { title: "资料说明", description: "整理平台资料、规则公开度、入口状态和更新时间。" },
-    { title: "风险核对", description: "访问前先核对条款、地区限制、费用规则和账号安全。" },
-    { title: "延伸阅读", description: "通过相关文章了解更多规则说明和风险提醒。" },
+    { title: "资料说明", description: "看平台资料、规则页面、入口状态和更新时间。" },
+    { title: "风险核对", description: "条款、地区限制、费用、账号安全，先看清楚。" },
+    { title: "延伸阅读", description: "相关文章放在下面，方便继续查规则和提醒。" },
   ];
   const relatedPlatforms = platforms.filter((platform) =>
     platform.supported.some((item) => category.name.includes(item) || platform.type.includes(category.name.slice(0, 2))),
@@ -60,7 +60,7 @@ export default async function CategoryPage({ params }: Props) {
         <section className="archive-hero">
           <div className="archive-hero-inner">
             <div>
-              <p className="eyebrow">频道 / {category.name}</p>
+              <p className="eyebrow">栏目 / {category.name}</p>
               <h1>{category.name}</h1>
               <p>{category.description}</p>
               <div className="channel-stats">
@@ -74,7 +74,7 @@ export default async function CategoryPage({ params }: Props) {
         </section>
 
         <section className="mt-8">
-          <SectionTitle eyebrow="频道重点专题" title={`${category.name}专题索引`} />
+            <SectionTitle eyebrow="栏目重点" title={`${category.name}先看这些`} />
           <div className="module-grid">
             {modules.map((item) => (
               <article className="module-card" key={item.title}>
@@ -87,11 +87,11 @@ export default async function CategoryPage({ params }: Props) {
 
         <div className="mt-8 grid gap-8 lg:grid-cols-[minmax(0,1fr)_330px]">
           <div className="min-w-0">
-            <SectionTitle eyebrow="重点文章" title={`${category.name}重点内容`} />
+            <SectionTitle eyebrow="重点文章" title={`${category.name}相关内容`} />
             <ArticleCard article={featured} featured />
 
             <section className="mt-10">
-              <SectionTitle eyebrow="最新文章" title={`${category.name}最新内容`} />
+              <SectionTitle eyebrow="最新文章" title={`${category.name}最近更新`} />
               <div className="category-news-list">
                 {latestArticles.map((article) => (
                   <ArticleCard key={article.slug} article={article} />
@@ -100,7 +100,7 @@ export default async function CategoryPage({ params }: Props) {
             </section>
 
             <section className="mt-10">
-              <SectionTitle eyebrow="平台资料" title={`${category.name}相关平台资料`} />
+              <SectionTitle eyebrow="平台资料" title={`${category.name}相关资料`} />
               <div className="grid gap-4 md:grid-cols-2">
                 {platformList.map((platform) => (
                   <PlatformCard key={platform.slug} platform={platform} />

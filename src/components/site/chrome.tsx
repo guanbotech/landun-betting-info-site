@@ -108,7 +108,7 @@ function BrandLogo({ variant = "header" }: { variant?: "header" | "footer" }) {
         </span>
         <span className="brand-text min-w-0">
           <span className="brand-name">{site.name}</span>
-          <span className="brand-subtitle">博彩资讯媒体 · 平台资料库</span>
+          <span className="brand-subtitle">博彩资讯 · 平台资料</span>
         </span>
       </span>
     </span>
@@ -199,9 +199,7 @@ export function SiteFooter() {
           <div className="footer-brand">
             <BrandLogo variant="footer" />
           </div>
-          <p className="footer-copy">
-            博彩资讯、平台资料与风险提醒整理站。内容仅供资料参考，不提供投注服务。
-          </p>
+          <p className="footer-copy">记录博彩资讯、平台资料和风险提醒，不提供投注服务。</p>
           <span className="footer-age">18+ 风险提醒</span>
         </div>
         {groups.map((group) => (
@@ -218,7 +216,7 @@ export function SiteFooter() {
         ))}
       </div>
       <div className="footer-bottom">
-        本站内容仅用于资料整理、规则说明与风险教育，不提供投注服务，不构成法律、财务或投资建议。请遵守所在地法律法规。
+        本站只记录公开资料、规则说明和风险提醒，不提供投注服务。请先确认所在地法律法规。
       </div>
     </footer>
   );
@@ -305,7 +303,7 @@ export function Sidebar() {
           <ShieldCheck className="size-4" aria-hidden="true" />
           免责声明
         </h2>
-        <p>本站仅整理公开资料与风险信息，不提供投注服务，不构成平台背书。</p>
+        <p>本站只记录公开资料和风险信息，不提供投注服务，也不替任何平台作保证。</p>
       </div>
     </aside>
   );
@@ -391,8 +389,8 @@ export function ArticleCard({ article, featured = false }: { article: (typeof ar
 }
 
 export function PlatformCard({ platform, rank }: { platform: (typeof platforms)[number]; rank?: number }) {
-  const completeness = platform.basics.find((item) => item.label === "资料完整度")?.value ?? "待核对";
-  const openness = platform.basics.find((item) => item.label === "规则公开度")?.value ?? "待核对";
+  const completeness = platform.basics.find((item) => item.label === "资料情况" || item.label === "资料完整度")?.value ?? "待核对";
+  const openness = platform.basics.find((item) => item.label === "规则说明" || item.label === "规则公开度")?.value ?? "待核对";
 
   return (
     <article className={rank ? "platform-card ranked" : "platform-card"}>
@@ -411,11 +409,11 @@ export function PlatformCard({ platform, rank }: { platform: (typeof platforms)[
       </div>
       <dl className="platform-metrics priority">
         <div>
-          <dt>资料完整度</dt>
+          <dt>资料情况</dt>
           <dd>{completeness}</dd>
         </div>
         <div>
-          <dt>规则公开度</dt>
+          <dt>规则说明</dt>
           <dd>{openness}</dd>
         </div>
         <div>
@@ -449,10 +447,8 @@ export function RankingTeaser() {
       <div className="site-container ranking-teaser">
         <div className="ranking-teaser-head">
           <p className="eyebrow">博彩监管</p>
-          <h2>按资料完整度和规则透明度整理平台列表</h2>
-          <p>
-            榜单仅基于资料完整度、规则透明度、内容分类和更新时间整理，仅用于资料索引，不构成平台背书。
-          </p>
+          <h2>按资料情况和规则说明列出平台</h2>
+          <p>这里按资料情况、规则说明、内容分类和更新时间列出平台，只方便查资料，不代表使用建议。</p>
           <Link className="btn-primary" href="/rankings">
             查看博彩监管
           </Link>

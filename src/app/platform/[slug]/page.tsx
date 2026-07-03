@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   return {
     title: `${platform.name}平台资料`,
-    description: `${platform.name}的平台类型、支持内容、资料更新时间、风险等级、基础资料、注意事项、FAQ 与免责声明。`,
+    description: `${platform.name}的平台类型、支持内容、更新时间、入口状态、注意事项和常见风险。`,
     alternates: { canonical: `/platform/${platform.slug}` },
   };
 }
@@ -30,8 +30,8 @@ export default async function PlatformPage({ params }: Props) {
   if (!platform) notFound();
   const sameType = platforms.filter((item) => item.slug !== platform.slug && item.type === platform.type);
   const recommendations = sameType.length ? sameType : platforms.filter((item) => item.slug !== platform.slug).slice(0, 2);
-  const completeness = platform.basics.find((item) => item.label === "资料完整度")?.value ?? "待核对";
-  const openness = platform.basics.find((item) => item.label === "规则公开度")?.value ?? "待核对";
+  const completeness = platform.basics.find((item) => item.label === "资料情况" || item.label === "资料完整度")?.value ?? "待核对";
+  const openness = platform.basics.find((item) => item.label === "规则说明" || item.label === "规则公开度")?.value ?? "待核对";
 
   return (
     <>
@@ -54,7 +54,7 @@ export default async function PlatformPage({ params }: Props) {
                 </div>
                 <div className="mt-5 flex flex-wrap gap-3">
                   <Link className="btn-primary" href="#review">查看资料</Link>
-                  <Link className="btn-secondary" href="#review">阅读评测</Link>
+                  <Link className="btn-secondary" href="#review">看概况</Link>
                   <Link className="btn-secondary" href="#risk">风险提醒</Link>
                   <Link className="btn-secondary" href="#entry-check">核对入口</Link>
                 </div>
@@ -63,15 +63,15 @@ export default async function PlatformPage({ params }: Props) {
             <aside className="platform-hero-panel">
               <dl className="platform-metrics">
                 <div>
-                  <dt>资料完整度</dt>
+                  <dt>资料情况</dt>
                   <dd>{completeness}</dd>
                 </div>
                 <div>
-                  <dt>规则公开度</dt>
+                  <dt>规则说明</dt>
                   <dd>{openness}</dd>
                 </div>
                 <div>
-                  <dt>入口核对状态</dt>
+                  <dt>入口状态</dt>
                   <dd>需自行核对</dd>
                 </div>
               </dl>
@@ -96,10 +96,10 @@ export default async function PlatformPage({ params }: Props) {
                   <tr><th>平台名称</th><td>{platform.name}</td></tr>
                   <tr><th>平台类型</th><td>{platform.type}</td></tr>
                   <tr><th>支持内容</th><td>{platform.supported.join("、")}</td></tr>
-                  <tr><th>资料状态</th><td>{completeness}</td></tr>
+                  <tr><th>资料情况</th><td>{completeness}</td></tr>
                   <tr><th>风险等级</th><td>风险{platform.risk}</td></tr>
                   <tr><th>更新时间</th><td>{platform.updatedAt}</td></tr>
-                  <tr><th>入口核对说明</th><td>访问前请核对域名、证书、公告来源和客服渠道。</td></tr>
+                  <tr><th>入口说明</th><td>访问前请核对域名、证书、公告来源和客服渠道。</td></tr>
                   <tr><th>注意事项</th><td>重点查看地区限制、费用、活动条款、提款条件和争议处理渠道。</td></tr>
                 </tbody>
               </table>
@@ -112,8 +112,8 @@ export default async function PlatformPage({ params }: Props) {
           </section>
 
           <section id="entry-check" className="content-panel">
-            <h2>入口核对说明</h2>
-            <p>核对入口时请确认域名、证书、公开公告、客服渠道和最后更新时间。本站资料不代表平台官方声明，也不应替代读者自己的核验。</p>
+            <h2>入口说明</h2>
+            <p>核对入口时请确认域名、证书、公开公告、客服渠道和最后更新时间。本站只记录看到的资料，入口仍要自己确认。</p>
           </section>
 
           <div className="grid gap-5 lg:grid-cols-3">
@@ -134,12 +134,12 @@ export default async function PlatformPage({ params }: Props) {
           <section className="faq-block">
             <h2>FAQ</h2>
             <details open>
-              <summary>平台资料页是否表示推荐？</summary>
-              <p>不是。资料页仅用于信息整理、风险提醒和规则核对，不构成使用建议。</p>
+              <summary>平台资料页是不是使用建议？</summary>
+              <p>不是。这里只写公开资料、规则和风险点，不建议你直接使用任何平台。</p>
             </details>
             <details open>
               <summary>风险等级如何理解？</summary>
-              <p>风险等级会根据资料完整度、规则清晰度、入口状态和公开争议信息持续更新。</p>
+              <p>风险等级主要看规则是否清楚、入口是否稳定、有没有公开争议，以及资料多久没更新。</p>
             </details>
           </section>
 
@@ -148,7 +148,7 @@ export default async function PlatformPage({ params }: Props) {
           </div>
 
           <section className="related-block">
-            <h2>同类平台推荐</h2>
+            <h2>同类平台资料</h2>
             <div className="mt-5 grid gap-4 md:grid-cols-2">
               {recommendations.map((item) => (
                 <PlatformCard key={item.slug} platform={item} />
@@ -168,7 +168,7 @@ export default async function PlatformPage({ params }: Props) {
           <section className="legal-note">
             <h2>免责声明</h2>
             <p>
-              本页仅整理平台公开资料与风险提醒，不代表平台官方声明，不构成使用建议或任何形式背书。访问前请自行核对所在地法律法规、平台条款、费用规则和账户限制。
+              本页只记录平台公开资料和风险提醒，不代表平台官方说法，也不建议你直接使用。访问前请自己核对所在地法律、平台条款、费用规则和账户限制。
             </p>
           </section>
         </article>
