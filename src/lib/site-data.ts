@@ -51,7 +51,7 @@ export type TopicPage = {
 
 export const site = {
   name: "蓝盾博彩情报站",
-  url: "https://asia-bet-data.com",
+  url: "https://asiabocaitop1.com",
   description:
     "面向中文用户整理博彩资讯、平台资料、风险提醒、入口核对与规则指南，强调信息核对、理性判断和访问前风险识别。",
 };
