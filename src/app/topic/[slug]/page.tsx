@@ -41,6 +41,7 @@ export default async function TopicPage({ params }: Props) {
   const topic = topicBySlug(slug);
   if (!topic) notFound();
 
+  const isOnlineGame = topic.parentSlug === "online-games";
   const parentArticles = articles.filter((article) => article.category === topic.parentSlug);
   const articleList = parentArticles.length ? parentArticles : articles.slice(0, 4);
   const relatedTopics = topicsByParent(topic.parentSlug).filter((item) => item.slug !== topic.slug).slice(0, 6);
@@ -66,11 +67,13 @@ export default async function TopicPage({ params }: Props) {
             <p className="eyebrow">专题 / {topic.parentName}</p>
             <h1>{topic.title}</h1>
             <p>{topic.description}</p>
-            <div className="topic-pill-row">
-              <span>资料来源</span>
-              <span>规则条款</span>
-              <span>风险点</span>
-            </div>
+            {!isOnlineGame ? (
+              <div className="topic-pill-row">
+                <span>资料来源</span>
+                <span>规则条款</span>
+                <span>风险点</span>
+              </div>
+            ) : null}
           </div>
           <CategoryCover
             categorySlug={topic.parentSlug}
@@ -80,14 +83,13 @@ export default async function TopicPage({ params }: Props) {
           />
         </section>
 
+        {isOnlineGame ? (
+          <div className="online-game-focus mt-8">
+            <GameSimulator slug={topic.slug} />
+          </div>
+        ) : (
         <div className="mt-8 grid gap-8 lg:grid-cols-[minmax(0,1fr)_330px]">
           <div className="min-w-0">
-            {topic.parentSlug === "online-games" ? (
-              <section>
-                <GameSimulator slug={topic.slug} />
-              </section>
-            ) : null}
-
             <section>
               <SectionTitle eyebrow="先看这里" title={`${topic.title}要点`} />
               <div className="topic-grid">
@@ -147,6 +149,7 @@ export default async function TopicPage({ params }: Props) {
           </div>
           <Sidebar />
         </div>
+        )}
       </main>
       <SiteFooter />
     </>

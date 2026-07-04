@@ -1193,6 +1193,67 @@
     @apply mt-4 rounded-2xl border border-[#FED7AA] bg-[#FFF7ED] px-4 py-3 text-sm font-bold leading-6 text-[#9A3412];
   }
 
+  .online-game-focus .game-sim {
+    @apply mb-0 p-6 sm:p-8 lg:p-10;
+  }
+
+  .online-game-focus .game-sim-head h2 {
+    @apply text-3xl sm:text-4xl;
+  }
+
+  .online-game-focus .game-sim-head p:not(.eyebrow) {
+    @apply max-w-3xl text-base leading-7;
+  }
+
+  .online-game-focus .game-balance {
+    @apply px-7 py-5;
+  }
+
+  .online-game-focus .game-balance strong {
+    @apply text-5xl;
+  }
+
+  .online-game-focus .game-table {
+    @apply mt-8 gap-6 xl:grid-cols-[minmax(0,1.15fr)_0.85fr];
+  }
+
+  .online-game-focus .game-panel,
+  .online-game-focus .game-controls {
+    @apply p-6 sm:p-8;
+  }
+
+  .online-game-focus .game-cards {
+    @apply gap-4;
+  }
+
+  .online-game-focus .game-cards b {
+    @apply h-32 w-24 text-3xl;
+  }
+
+  .online-game-focus .game-panel > strong {
+    @apply text-3xl;
+  }
+
+  .online-game-focus .game-option-grid {
+    @apply gap-3;
+  }
+
+  .online-game-focus .game-option-grid button {
+    @apply px-5 py-5 text-base;
+  }
+
+  .online-game-focus .stake-control {
+    @apply p-5;
+  }
+
+  .online-game-focus .stake-control strong {
+    @apply text-3xl;
+  }
+
+  .online-game-focus .game-disclaimer {
+    @apply mt-6 px-5 py-4 text-base;
+  }
+
   .topic-link-grid {
     @apply grid gap-3 sm:grid-cols-2 lg:grid-cols-3;
   }
