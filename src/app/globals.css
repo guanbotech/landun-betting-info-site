@@ -310,11 +310,11 @@
   }
 
   .hero-layout {
-    @apply grid gap-6 py-8 lg:grid-cols-[1.05fr_0.95fr] lg:py-10;
+    @apply grid gap-5 py-6 lg:grid-cols-[1.05fr_0.95fr] lg:py-7;
   }
 
   .hero-copy {
-    @apply relative flex min-h-[430px] flex-col justify-center overflow-hidden rounded-3xl border border-[#D8E4F2] bg-white p-6 shadow-sm sm:p-12 lg:p-14;
+    @apply relative flex min-h-[360px] flex-col justify-center overflow-hidden rounded-3xl border border-[#D8E4F2] bg-white p-6 shadow-sm sm:p-10 lg:p-12;
   }
 
   .hero-copy::before {
@@ -328,11 +328,11 @@
   }
 
   .hero-copy h1 {
-    @apply relative z-10 max-w-3xl text-4xl font-extrabold leading-[1.12] tracking-normal text-[#07111F] sm:text-5xl xl:text-[54px];
+    @apply relative z-10 max-w-3xl text-4xl font-extrabold leading-[1.12] tracking-normal text-[#07111F] sm:text-5xl xl:text-[50px];
   }
 
   .hero-copy p {
-    @apply relative z-10 mt-5 max-w-[760px] text-base leading-[1.8] text-[#475569];
+    @apply relative z-10 mt-4 max-w-[760px] text-base leading-[1.75] text-[#475569];
   }
 
   .hero-badges {
@@ -348,7 +348,7 @@
   }
 
   .risk-observer {
-    @apply relative flex min-h-[430px] flex-col justify-center overflow-hidden rounded-3xl border border-[#D8E4F2] bg-white p-6 text-[#07111F] shadow-sm sm:p-8;
+    @apply relative flex min-h-[360px] flex-col justify-center overflow-hidden rounded-3xl border border-[#D8E4F2] bg-white p-6 text-[#07111F] shadow-sm sm:p-7;
   }
 
   .risk-observer::before {
@@ -393,7 +393,7 @@
   }
 
   .home-lead-grid {
-    @apply grid items-start gap-6 py-8 lg:grid-cols-[1.42fr_0.78fr];
+    @apply grid items-start gap-5 py-6 lg:grid-cols-[1.42fr_0.78fr];
   }
 
   .news-rail,
@@ -462,7 +462,88 @@
   }
 
   .media-band {
-    @apply my-10 border-y border-[#E2E8F0] bg-white py-10;
+    @apply my-8 border-y border-[#E2E8F0] bg-white py-8;
+  }
+
+  .dense-home-board {
+    @apply pb-6;
+  }
+
+  .dense-board-head {
+    @apply flex flex-col gap-3 md:flex-row md:items-end md:justify-between;
+  }
+
+  .dense-board-link {
+    @apply inline-flex items-center gap-1 self-start rounded-full border border-[#D8E4F2] bg-white px-4 py-2 text-sm font-black text-[#2563EB] hover:border-[#BFDBFE] hover:bg-[#EFF6FF];
+  }
+
+  .dense-board-grid {
+    @apply grid gap-4 lg:grid-cols-[repeat(3,minmax(0,1fr))_0.9fr];
+  }
+
+  .dense-channel-card,
+  .dense-alert-feed {
+    @apply min-w-0 overflow-hidden rounded-2xl border border-[#E2E8F0] bg-white shadow-[0_10px_28px_rgba(15,23,42,0.04)];
+  }
+
+  .dense-channel-card .category-cover {
+    @apply min-h-0 rounded-none;
+    aspect-ratio: 16 / 8.5;
+  }
+
+  .dense-channel-card .cover-content {
+    @apply rounded-xl px-3 py-2;
+  }
+
+  .dense-channel-body {
+    @apply p-4;
+  }
+
+  .dense-channel-body h3,
+  .dense-alert-feed h3 {
+    @apply mt-1 text-lg font-black leading-tight text-[#07111F];
+  }
+
+  .dense-link-list {
+    @apply mt-3 grid gap-2;
+  }
+
+  .dense-link-list a,
+  .dense-alert-feed a {
+    @apply grid gap-0.5 rounded-xl border border-[#E5ECF5] bg-[#F8FAFC] px-3 py-2.5 transition hover:border-[#BFDBFE] hover:bg-white;
+  }
+
+  .dense-link-list span,
+  .dense-alert-feed span {
+    @apply text-sm font-black leading-5 text-[#102A43];
+  }
+
+  .dense-link-list small,
+  .dense-alert-feed small {
+    @apply text-xs font-semibold leading-5 text-[#64748B];
+  }
+
+  .dense-alert-feed {
+    @apply p-4;
+  }
+
+  .dense-alert-feed a {
+    @apply mt-3;
+  }
+
+  .home-platform-section .platform-card-cover {
+    aspect-ratio: 16 / 8.5;
+  }
+
+  .home-platform-section .platform-card-head {
+    @apply pt-4;
+  }
+
+  .home-platform-section .platform-overview {
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
   }
 
   .channel-grid {

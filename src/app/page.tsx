@@ -11,12 +11,39 @@ import {
   SiteFooter,
   SiteHeader,
 } from "@/components/site/chrome";
-import { articles, categories, platforms } from "@/lib/site-data";
+import { getTopicCoverImage } from "@/lib/cover-images";
+import { articles, categories, platforms, topicPages } from "@/lib/site-data";
 
 export default function Home() {
   const featured = articles[0];
   const latest = articles.slice(1, 7);
   const keyCategories = categories.slice(0, 4);
+  const sportsTopics = topicPages.filter((topic) => topic.parentSlug === "sports-betting").slice(0, 4);
+  const esportsTopics = topicPages.filter((topic) => topic.parentSlug === "esports-betting").slice(0, 4);
+  const gamesTopics = topicPages.filter((topic) => topic.parentSlug === "online-games").slice(0, 4);
+  const channelPanels = [
+    {
+      eyebrow: "体育规则",
+      title: "足球 / NBA / F1",
+      categorySlug: "sports-betting",
+      imageSrc: getTopicCoverImage("nba"),
+      links: sportsTopics,
+    },
+    {
+      eyebrow: "电竞赛事",
+      title: "版本、阵容和赛制",
+      categorySlug: "esports-betting",
+      imageSrc: getTopicCoverImage("league-of-legends"),
+      links: esportsTopics,
+    },
+    {
+      eyebrow: "棋牌扑克",
+      title: "资金与活动条款",
+      categorySlug: "online-games",
+      imageSrc: getTopicCoverImage("niuniu-online"),
+      links: gamesTopics,
+    },
+  ];
 
   return (
     <>
@@ -90,7 +117,52 @@ export default function Home() {
           </aside>
         </section>
 
-        <section className="site-container py-6">
+        <section className="site-container dense-home-board">
+          <div className="dense-board-head">
+            <SectionTitle
+              eyebrow="频道速览"
+              title="先按赛事和规则快速进入"
+              description="把体育、电竞、棋牌、风险内容压缩在一起，减少翻页成本。"
+            />
+            <Link className="dense-board-link" href="/category/sports-betting">
+              查看全部
+              <ArrowRight className="size-4" aria-hidden="true" />
+            </Link>
+          </div>
+          <div className="dense-board-grid">
+            {channelPanels.map((panel) => (
+              <article className="dense-channel-card" key={panel.eyebrow}>
+                <Link href={`/category/${panel.categorySlug}`} aria-label={panel.title}>
+                  <CategoryCover categorySlug={panel.categorySlug} title="" compact imageSrc={panel.imageSrc} />
+                </Link>
+                <div className="dense-channel-body">
+                  <p className="eyebrow">{panel.eyebrow}</p>
+                  <h3>{panel.title}</h3>
+                  <div className="dense-link-list">
+                    {panel.links.map((topic) => (
+                      <Link href={`/topic/${topic.slug}`} key={topic.slug}>
+                        <span>{topic.title}</span>
+                        <small>{topic.highlights[0]}</small>
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              </article>
+            ))}
+            <aside className="dense-alert-feed">
+              <p className="eyebrow risk">风险与资料</p>
+              <h3>入口、账户、规则更新</h3>
+              {[articles[3], articles[4], articles[5], articles[1]].map((article) => (
+                <Link href={`/article/${article.slug}`} key={article.slug}>
+                  <span>{article.title}</span>
+                  <small>{article.updatedAt} · {article.readTime}</small>
+                </Link>
+              ))}
+            </aside>
+          </div>
+        </section>
+
+        <section className="site-container home-platform-section py-6">
           <SectionTitle
             eyebrow="平台资料"
             title="先看资料，再看风险"
