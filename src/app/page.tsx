@@ -34,7 +34,7 @@ export default function Home() {
               <p>
                 这里整理电竞、体育、扑克、棋牌游戏相关的公开资料、平台信息与风险提醒。访问前建议先核对规则、入口状态和限制条件。
               </p>
-              <div className="mt-7 flex flex-wrap gap-3">
+              <div className="hero-actions mt-7 flex flex-wrap gap-3">
                 <Link className="btn-primary" href="/category/risk-warning">
                   <AlertTriangle className="size-4" aria-hidden="true" />
                   查看风险提醒

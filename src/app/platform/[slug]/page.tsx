@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArticleCard, Breadcrumbs, PlatformCard, RiskNotice, SiteFooter, SiteHeader } from "@/components/site/chrome";
+import { ArticleCard, Breadcrumbs, CategoryCover, PlatformCard, RiskNotice, SiteFooter, SiteHeader } from "@/components/site/chrome";
 import { articles, platformBySlug, platforms } from "@/lib/site-data";
 
 type Props = {
@@ -61,6 +61,7 @@ export default async function PlatformPage({ params }: Props) {
               </div>
             </div>
             <aside className="platform-hero-panel">
+              <CategoryCover categorySlug="platform-reviews" title="资料卡 / 规则核对" compact />
               <dl className="platform-metrics">
                 <div>
                   <dt>资料情况</dt>
