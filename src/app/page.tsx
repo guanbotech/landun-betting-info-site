@@ -98,23 +98,37 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="site-container home-lead-grid">
-          <ArticleCard article={featured} featured />
-          <aside className="news-rail">
-            <SectionTitle eyebrow="快讯 / 风险提醒" title="今日关注" />
-            {latest.slice(0, 4).map((article) => (
-              <Link className="headline-link" href={`/article/${article.slug}`} key={article.slug}>
-                <span>
-                  {article.title}
-                  <small>{article.updatedAt} · {article.readTime}</small>
-                </span>
-                <ArrowRight className="mt-1 size-4 shrink-0" aria-hidden="true" />
+        <section className="home-editorial-section">
+          <div className="site-container">
+            <div className="home-editorial-title">
+              <div>
+                <p>综合资讯</p>
+                <h2>今日重点与风险观察</h2>
+              </div>
+              <Link href="/category/platform-reviews">
+                查看更多
+                <ArrowRight className="size-4" aria-hidden="true" />
               </Link>
-            ))}
-          </aside>
+            </div>
+            <div className="home-lead-grid">
+              <ArticleCard article={featured} featured />
+              <aside className="news-rail">
+                <SectionTitle eyebrow="快讯 / 风险提醒" title="今日关注" />
+                {latest.slice(0, 4).map((article) => (
+                  <Link className="headline-link" href={`/article/${article.slug}`} key={article.slug}>
+                    <span>
+                      {article.title}
+                      <small>{article.updatedAt} · {article.readTime}</small>
+                    </span>
+                    <ArrowRight className="mt-1 size-4 shrink-0" aria-hidden="true" />
+                  </Link>
+                ))}
+              </aside>
+            </div>
+          </div>
         </section>
 
-        <section className="site-container dense-home-board">
+        <section className="site-container dense-home-board home-module-panel">
           <div className="dense-board-head">
             <SectionTitle
               eyebrow="频道速览"
@@ -159,7 +173,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="site-container home-platform-section py-6">
+        <section className="site-container home-platform-section home-module-panel py-6">
           <div className="home-section-head">
             <SectionTitle
               eyebrow="平台资料"
@@ -199,7 +213,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="site-container py-8">
+        <section className="site-container home-module-panel py-8">
           <SectionTitle eyebrow="最新内容" title="最近更新的规则和提醒" />
           <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
             {articles.map((article) => (
