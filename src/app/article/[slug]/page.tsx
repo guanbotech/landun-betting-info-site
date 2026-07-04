@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArticleCard, Breadcrumbs, CategoryCover, RiskNotice, SiteFooter, SiteHeader } from "@/components/site/chrome";
+import { getArticleCoverImage } from "@/lib/cover-images";
 import { articleBySlug, articles, categoryBySlug, relatedArticles } from "@/lib/site-data";
 
 type Props = {
@@ -65,7 +66,11 @@ export default async function ArticlePage({ params }: Props) {
               <span>{article.readTime}</span>
             </div>
             <div className="mt-7">
-              <CategoryCover categorySlug={article.category} title={article.tags.slice(0, 2).join(" / ")} />
+              <CategoryCover
+                categorySlug={article.category}
+                title={article.tags.slice(0, 2).join(" / ")}
+                imageSrc={getArticleCoverImage(article.slug)}
+              />
             </div>
 
             <nav className="toc lg:hidden" aria-label="正文目录">

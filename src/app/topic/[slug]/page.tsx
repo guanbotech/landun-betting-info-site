@@ -12,6 +12,7 @@ import {
   SiteFooter,
   SiteHeader,
 } from "@/components/site/chrome";
+import { getTopicCoverImage } from "@/lib/cover-images";
 import { articles, platforms, topicBySlug, topicPages, topicsByParent } from "@/lib/site-data";
 
 type Props = {
@@ -70,7 +71,12 @@ export default async function TopicPage({ params }: Props) {
               <span>风险点</span>
             </div>
           </div>
-          <CategoryCover categorySlug={topic.parentSlug} title={`${topic.title}资料`} compact />
+          <CategoryCover
+            categorySlug={topic.parentSlug}
+            title={`${topic.title}资料`}
+            compact
+            imageSrc={getTopicCoverImage(topic.slug)}
+          />
         </section>
 
         <div className="mt-8 grid gap-8 lg:grid-cols-[minmax(0,1fr)_330px]">

@@ -23,6 +23,7 @@ import {
   ShieldCheck,
   Trophy,
 } from "lucide-react";
+import { categoryImagePaths, getArticleCoverImage } from "@/lib/cover-images";
 import { articles, categories, legalPages, platforms, site } from "@/lib/site-data";
 
 const navItems = [
@@ -74,17 +75,6 @@ const navDropdowns = [
     ],
   },
 ];
-
-const categoryImagePaths: Record<string, string> = {
-  "esports-betting": "/images/categories/esports-betting.webp",
-  "sports-betting": "/images/categories/sports-betting.webp",
-  poker: "/images/categories/poker.webp",
-  "online-games": "/images/categories/card-games.webp",
-  "risk-warning": "/images/categories/risk-warning.webp",
-  "platform-reviews": "/images/categories/platform-review.webp",
-  rankings: "/images/categories/rankings.webp",
-  "betting-guide": "/images/categories/betting-guide.webp",
-};
 
 const brandLogoPath = "";
 
@@ -344,11 +334,21 @@ const coverIcons = {
   guide: BookOpen,
 };
 
-export function CategoryCover({ categorySlug, title, compact = false }: { categorySlug: string; title: string; compact?: boolean }) {
+export function CategoryCover({
+  categorySlug,
+  title,
+  compact = false,
+  imageSrc,
+}: {
+  categorySlug: string;
+  title: string;
+  compact?: boolean;
+  imageSrc?: string;
+}) {
   const category = categories.find((item) => item.slug === categorySlug);
   const cover = category?.cover ?? "guide";
   const Icon = coverIcons[cover as keyof typeof coverIcons] ?? BookOpen;
-  const imagePath = categoryImagePaths[categorySlug];
+  const imagePath = imageSrc ?? categoryImagePaths[categorySlug];
   const hasImage = Boolean(imagePath);
 
   return (
@@ -395,7 +395,7 @@ export function ArticleCard({ article, featured = false }: { article: (typeof ar
   return (
     <article className={featured ? "article-card featured" : "article-card"}>
       <Link href={`/article/${article.slug}`} aria-label={article.title}>
-        <CategoryCover categorySlug={article.category} title="" compact={!featured} />
+        <CategoryCover categorySlug={article.category} title="" compact={!featured} imageSrc={getArticleCoverImage(article.slug)} />
       </Link>
       <div className="article-card-body">
         <div className="article-card-top">
