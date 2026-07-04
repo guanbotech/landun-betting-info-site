@@ -5,7 +5,6 @@ import {
   CategoryCover,
   OfferRules,
   PlatformCard,
-  RankingTeaser,
   RiskNotice,
   SectionTitle,
   SiteFooter,
@@ -163,12 +162,18 @@ export default function Home() {
         </section>
 
         <section className="site-container home-platform-section py-6">
-          <SectionTitle
-            eyebrow="平台资料"
-            title="先看资料，再看风险"
-            description="每个平台只列公开信息、更新时间和需要留意的条款，不做安全承诺。"
-          />
-          <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+          <div className="home-section-head">
+            <SectionTitle
+              eyebrow="平台资料"
+              title="先看资料，再看风险"
+              description="每个平台只列公开信息、更新时间和需要留意的条款，不做安全承诺。"
+            />
+            <Link className="dense-board-link" href="/rankings">
+              查看平台资料榜
+              <ArrowRight className="size-4" aria-hidden="true" />
+            </Link>
+          </div>
+          <div className="mt-5 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
             {platforms.map((platform, index) => (
               <PlatformCard key={platform.slug} platform={platform} rank={index + 1} />
             ))}
@@ -210,7 +215,6 @@ export default function Home() {
           <RiskNotice title={null} />
         </section>
 
-        <RankingTeaser />
         <OfferRules />
 
         <section className="site-container py-10">

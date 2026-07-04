@@ -546,6 +546,14 @@
     -webkit-line-clamp: 3;
   }
 
+  .home-section-head {
+    @apply flex flex-col gap-3 md:flex-row md:items-end md:justify-between;
+  }
+
+  .home-section-head .section-title {
+    @apply mb-0;
+  }
+
   .channel-grid {
     @apply grid gap-4 md:grid-cols-2 lg:grid-cols-4;
   }
@@ -938,14 +946,12 @@
   }
 
   .offer-panel h2,
-  .guide-grid h2,
-  .ranking-teaser h2 {
+  .guide-grid h2 {
     @apply text-2xl font-black text-[#07111F] sm:text-3xl;
   }
 
   .offer-panel p:not(.eyebrow),
-  .guide-grid p,
-  .ranking-teaser p {
+  .guide-grid p {
     @apply mt-3 max-w-3xl text-sm leading-6 text-[#64748B];
   }
 
@@ -972,23 +978,6 @@
 
   .disclaimer-badge {
     @apply shrink-0 rounded-full border border-[#FED7AA] bg-white px-4 py-2 text-xs font-black text-[#B45309];
-  }
-
-  .ranking-teaser {
-    @apply grid gap-6;
-  }
-
-  .ranking-teaser-head {
-    @apply flex flex-col gap-4 rounded-2xl border border-[#E2E8F0] bg-[#F8FAFC] p-6 md:flex-row md:items-center md:justify-between;
-  }
-
-  .ranking-teaser-head > div,
-  .ranking-teaser-head p:not(.eyebrow) {
-    @apply min-w-0;
-  }
-
-  .ranking-mini-list {
-    @apply grid gap-4 md:grid-cols-2 xl:grid-cols-4;
   }
 
   .archive-hero {
@@ -1382,8 +1371,6 @@
   .hero-layout,
   .home-lead-grid,
   .article-layout,
-  .ranking-teaser,
-  .ranking-mini-list,
   .footer-grid {
     min-width: 0;
   }

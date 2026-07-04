@@ -495,28 +495,6 @@ export function PlatformCard({ platform, rank }: { platform: (typeof platforms)[
   );
 }
 
-export function RankingTeaser() {
-  return (
-    <section className="media-band">
-      <div className="site-container ranking-teaser">
-        <div className="ranking-teaser-head">
-          <p className="eyebrow">平台资料榜</p>
-          <h2>按资料情况和规则说明列出平台</h2>
-          <p>这里按资料情况、规则说明、内容分类和更新时间列出平台，只方便查资料，不代表使用建议。</p>
-          <Link className="btn-primary" href="/rankings">
-            查看平台资料榜
-          </Link>
-        </div>
-        <div className="ranking-mini-list">
-          {platforms.slice(0, 4).map((platform, index) => (
-            <PlatformCard key={platform.slug} platform={platform} rank={index + 1} />
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
 export function OfferRules() {
   return (
     <section className="site-container">
