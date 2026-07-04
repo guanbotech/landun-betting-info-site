@@ -156,7 +156,7 @@ export default async function CategoryPage({ params }: Props) {
           </section>
         ) : null}
 
-        {isTopicCardOnly || isArticleFlow || isRankingCards ? null : (
+        {isTopicCardOnly || isArticleFlow || isRankingCards || isPoker ? null : (
         <>
         <section className="mt-8">
             <SectionTitle eyebrow="栏目重点" title={`${category.name}先看这些`} />
