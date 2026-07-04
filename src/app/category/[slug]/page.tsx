@@ -117,7 +117,7 @@ export default async function CategoryPage({ params }: Props) {
           <section className="article-flow-panel mt-8">
             <SectionTitle eyebrow="内容文章" title="博彩资讯文章" />
             <div className="article-flow-list">
-              {infoArticles.map((article) => (
+              {infoArticles.slice(0, 6).map((article) => (
                 <Link className="article-flow-item" href={`/article/${article.slug}`} key={article.slug}>
                   <Image
                     src={getArticleCoverImage(article.slug) ?? "/images/categories/platform-review.webp"}
@@ -139,6 +139,12 @@ export default async function CategoryPage({ params }: Props) {
                 </Link>
               ))}
             </div>
+            <nav className="pagination article-flow-pagination" aria-label="博彩资讯分页">
+              <span className="is-current">1</span>
+              <span>2</span>
+              <span>3</span>
+              <span>下一页</span>
+            </nav>
           </section>
         ) : null}
 

@@ -48,10 +48,10 @@ export function getTopicCoverImage(slug: string) {
 }
 
 const platformImagePaths: Record<string, string> = {
-  "northstar-review": "/images/platforms/northstar-review.webp",
-  "atlas-esports": "/images/platforms/atlas-esports.webp",
-  "river-poker": "/images/platforms/river-poker.webp",
-  "clearline-games": "/images/platforms/clearline-games.webp",
+  "singapore-marina-bay-sands": "/images/platforms/singapore-marina-bay-sands.webp",
+  "malaysia-genting-casino": "/images/platforms/malaysia-genting-casino.webp",
+  "macau-mgm": "/images/platforms/macau-mgm.webp",
+  "las-vegas-casino": "/images/platforms/las-vegas-casino.webp",
 };
 
 export function getPlatformCoverImage(slug: string) {

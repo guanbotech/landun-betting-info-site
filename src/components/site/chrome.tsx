@@ -193,7 +193,7 @@ export function SiteHeader() {
 export function SiteFooter() {
   const groups = [
     { title: "核心栏目", links: categories.slice(0, 4).map((item) => ({ href: `/category/${item.slug}`, label: item.name })) },
-    { title: "平台资料", links: [{ href: "/rankings", label: "平台资料榜" }, ...platforms.slice(0, 3).map((item) => ({ href: `/platform/${item.slug}`, label: item.name }))] },
+    { title: "平台资料", links: [{ href: "/rankings", label: "平台资料榜" }, ...platforms.slice(0, 4).map((item) => ({ href: `/platform/${item.slug}`, label: item.name }))] },
     { title: "风险与指南", links: categories.slice(4, 6).map((item) => ({ href: `/category/${item.slug}`, label: item.name })) },
     { title: "法律页面", links: legalPages },
   ];
