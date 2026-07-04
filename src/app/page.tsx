@@ -3,9 +3,7 @@ import { AlertTriangle, ArrowRight, ShieldCheck } from "lucide-react";
 import {
   ArticleCard,
   CategoryCover,
-  OfferRules,
   PlatformCard,
-  RiskNotice,
   SectionTitle,
   SiteFooter,
   SiteHeader,
@@ -210,38 +208,52 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="site-container py-6">
-          <SectionTitle eyebrow="风险提醒" title="入口、账户、支付和规则都要提前核对" />
-          <RiskNotice title={null} />
-        </section>
-
-        <OfferRules />
-
         <section className="site-container py-10">
-          <div className="guide-grid">
-            <div>
-              <p className="eyebrow">博彩资讯</p>
-              <h2>访问前先看规则、资料和风险</h2>
-              <p>如果已经开始追亏、借钱或频繁改预算，先停下来，不要继续往下走。</p>
-            </div>
-            <Link className="btn-primary" href="/article/guide-responsible-gambling">
-              阅读全文
-            </Link>
-          </div>
-        </section>
-
-        <section className="site-container pb-12">
-          <div className="disclaimer-strip">
-            <span className="disclaimer-icon">
-              <ShieldCheck className="size-5" aria-hidden="true" />
-            </span>
-            <div>
-              <h2>18+ 合规与风险声明</h2>
+          <div className="home-risk-board">
+            <div className="home-risk-head">
+              <div>
+                <p className="eyebrow risk">风险提醒</p>
+                <h2>入口、账户、支付和规则都要提前核对</h2>
+              </div>
               <p>
-                本站只做资料记录和风险提醒，不提供投注服务，也不保证任何结果。请先确认所在地法律和个人财务风险。
+                博彩存在财务损失和成瘾风险。阅读平台资料前，请核对所在地法律、年龄限制、平台规则、费用条款和自我限制工具。
               </p>
             </div>
-            <span className="disclaimer-badge">自己核对</span>
+            <div className="home-risk-grid">
+              <Link className="home-risk-item risk-one" href="/category/risk-warning">
+                <span className="risk-number">01</span>
+                <div>
+                  <h3>入口与域名核对</h3>
+                  <p>先看域名、证书、跳转路径和公告记录，避免误入仿冒入口。</p>
+                </div>
+                <ArrowRight className="size-4" aria-hidden="true" />
+              </Link>
+              <Link className="home-risk-item risk-two" href="/article/online-games-offer-terms">
+                <span className="risk-number">02</span>
+                <div>
+                  <h3>活动规则先看限制</h3>
+                  <p>核对更新时间、有效投注、流水要求、地区限制和取消条件。</p>
+                </div>
+                <ArrowRight className="size-4" aria-hidden="true" />
+              </Link>
+              <Link className="home-risk-item risk-three" href="/article/guide-responsible-gambling">
+                <span className="risk-number">03</span>
+                <div>
+                  <h3>预算和行为先停一下</h3>
+                  <p>如果已经追亏、借钱或频繁改预算，先暂停，不要继续往下走。</p>
+                </div>
+                <ArrowRight className="size-4" aria-hidden="true" />
+              </Link>
+              <div className="home-risk-item risk-four">
+                <span className="risk-number">
+                  <ShieldCheck className="size-4" aria-hidden="true" />
+                </span>
+                <div>
+                  <h3>18+ 合规与风险声明</h3>
+                  <p>本站只做资料记录和风险提醒，不提供投注服务，也不保证任何结果。</p>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
       </main>
