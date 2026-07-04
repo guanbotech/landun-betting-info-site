@@ -393,7 +393,7 @@
   }
 
   .home-lead-grid {
-    @apply grid items-start gap-5 py-6 lg:grid-cols-[1.42fr_0.78fr];
+    @apply grid items-stretch gap-5 py-6 lg:grid-cols-[minmax(0,1.26fr)_minmax(360px,0.74fr)];
   }
 
   .news-rail,
@@ -405,7 +405,7 @@
   }
 
   .news-rail {
-    @apply flex flex-col gap-4 border-[#D8E4F2] p-6;
+    @apply flex h-full flex-col gap-4 border-[#D8E4F2] p-6;
   }
 
   .home-lead-grid > .article-card.featured {
@@ -414,7 +414,7 @@
 
   .home-lead-grid > .article-card.featured .category-cover {
     @apply min-h-0 rounded-none p-8;
-    aspect-ratio: 16 / 9;
+    aspect-ratio: 16 / 6.8;
   }
 
   .home-lead-grid > .article-card.featured .cover-symbol {
@@ -438,19 +438,19 @@
   }
 
   .home-lead-grid > .article-card.featured .article-card-body {
-    @apply p-8;
+    @apply p-6;
   }
 
   .home-lead-grid > .article-card.featured h3 {
-    @apply max-w-4xl text-4xl leading-tight;
+    @apply mt-2 max-w-4xl text-[1.9rem] leading-tight;
   }
 
   .home-lead-grid > .article-card.featured p {
-    @apply max-w-3xl text-base leading-8;
+    @apply mt-2 max-w-3xl text-[0.95rem] leading-7;
   }
 
   .headline-link {
-    @apply flex items-start justify-between gap-4 rounded-[14px] border border-[#E5ECF5] bg-white px-4 py-3.5 text-sm font-bold leading-6 text-[#102A43] transition hover:-translate-y-0.5 hover:border-[#BFDBFE] hover:bg-[#F8FAFC] hover:text-[#2563EB] hover:shadow-sm;
+    @apply flex flex-1 items-center justify-between gap-4 rounded-[14px] border border-[#E5ECF5] bg-white px-4 py-3.5 text-sm font-bold leading-6 text-[#102A43] transition hover:-translate-y-0.5 hover:border-[#BFDBFE] hover:bg-[#F8FAFC] hover:text-[#2563EB] hover:shadow-sm;
   }
 
   .headline-link svg {
