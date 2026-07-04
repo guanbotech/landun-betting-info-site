@@ -11,6 +11,7 @@ import {
   SiteHeader,
   StatCard,
 } from "@/components/site/chrome";
+import { GameSimulator } from "@/components/site/game-simulator";
 import { articles, articlesByCategory, categories, categoryBySlug, categoryModules, platforms } from "@/lib/site-data";
 
 type Props = {
@@ -51,6 +52,7 @@ export default async function CategoryPage({ params }: Props) {
     platform.supported.some((item) => category.name.includes(item) || platform.type.includes(category.name.slice(0, 2))),
   );
   const platformList = relatedPlatforms.length ? relatedPlatforms.slice(0, 2) : platforms.slice(0, 2);
+  const isPoker = slug === "poker";
   const sidebarPlatforms = platformList
     .concat(platforms)
     .filter((platform, index, list) => list.findIndex((item) => item.slug === platform.slug) === index);
@@ -84,6 +86,12 @@ export default async function CategoryPage({ params }: Props) {
             <CategoryCover categorySlug={category.slug} title={`${category.name}重点专题`} compact />
           </div>
         </section>
+
+        {isPoker ? (
+          <section className="poker-sim-section online-game-focus mt-8">
+            <GameSimulator slug="poker" />
+          </section>
+        ) : null}
 
         <section className="mt-8">
             <SectionTitle eyebrow="栏目重点" title={`${category.name}先看这些`} />

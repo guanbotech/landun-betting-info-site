@@ -11,6 +11,16 @@ type GameConfig = {
 };
 
 const configs: Record<string, GameConfig> = {
+  poker: {
+    title: "德州扑克虚拟下注模拟",
+    intro: "模拟底牌、公共牌和虚拟筹码变化，只用于体验下注节奏和资金波动。",
+    tableLabel: "底牌与公共牌",
+    options: [
+      { label: "跟注", odds: 1 },
+      { label: "加注", odds: 2 },
+      { label: "全下", odds: 4 },
+    ],
+  },
   "niuniu-online": {
     title: "牛牛虚拟下注模拟",
     intro: "选一边、调筹码、开一局。结果只用于理解赔率、节奏和资金波动。",
@@ -93,6 +103,10 @@ function describeRound(slug: string, cards: string[]) {
     const types = ["散牌", "对子", "顺子", "金花", "豹子"];
     return types[Math.floor(Math.random() * types.length)];
   }
+  if (slug === "poker") {
+    const hands = ["高牌", "一对", "两对", "三条", "顺子", "同花", "葫芦"];
+    return `本局牌型：${hands[Math.floor(Math.random() * hands.length)]}`;
+  }
   if (slug === "doudizhu-online") {
     const states = ["农民牌面更整", "地主有炸弹机会", "底牌改善有限", "加倍后波动变大"];
     return states[Math.floor(Math.random() * states.length)];
@@ -110,6 +124,7 @@ export function GameSimulator({ slug }: { slug: string }) {
   const [message, setMessage] = useState("选择一个下注项，点击开始模拟。");
 
   const cardCount = useMemo(() => {
+    if (slug === "poker") return 7;
     if (slug === "sangong-online" || slug === "golden-flower-online") return 3;
     if (slug === "dragon-tiger-online" || slug === "baccarat-online") return 4;
     return 5;
