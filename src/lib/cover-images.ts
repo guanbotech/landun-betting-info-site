@@ -46,3 +46,14 @@ export function getArticleCoverImage(slug: string) {
 export function getTopicCoverImage(slug: string) {
   return topicImagePaths[slug];
 }
+
+const platformImagePaths: Record<string, string> = {
+  "northstar-review": "/images/platforms/northstar-review.webp",
+  "atlas-esports": "/images/platforms/atlas-esports.webp",
+  "river-poker": "/images/platforms/river-poker.webp",
+  "clearline-games": "/images/platforms/clearline-games.webp",
+};
+
+export function getPlatformCoverImage(slug: string) {
+  return platformImagePaths[slug];
+}

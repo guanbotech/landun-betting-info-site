@@ -645,6 +645,10 @@
     @apply relative flex min-w-0 flex-col overflow-hidden rounded-2xl border border-[#D8E4F2] bg-white p-5 shadow-[0_10px_28px_rgba(15,23,42,0.04)] transition duration-200 hover:-translate-y-0.5 hover:border-[#BFDBFE] hover:shadow-[0_18px_40px_rgba(15,23,42,0.08)];
   }
 
+  .platform-card.with-cover {
+    @apply p-0;
+  }
+
   .platform-card::before {
     content: "";
     @apply absolute inset-x-0 top-0 h-1 bg-[#2563EB];
@@ -655,11 +659,53 @@
   }
 
   .platform-rank-flag {
-    @apply absolute right-4 top-4 rounded-full border border-[#FED7AA] bg-[#FFF7ED] px-3 py-1 text-xs font-black text-[#B45309] shadow-sm;
+    @apply absolute right-4 top-4 z-20 rounded-full border border-[#FED7AA] bg-[#FFF7ED] px-3 py-1 text-xs font-black text-[#B45309] shadow-sm;
+  }
+
+  .platform-card-cover {
+    @apply relative block aspect-[16/9] overflow-hidden bg-[#07111F];
+  }
+
+  .platform-card-cover-image {
+    @apply absolute inset-0 h-full w-full object-cover;
+  }
+
+  .platform-card-cover-scrim {
+    @apply absolute inset-0;
+    background:
+      linear-gradient(180deg, rgba(7, 17, 31, 0.04), rgba(7, 17, 31, 0.72)),
+      linear-gradient(90deg, rgba(7, 17, 31, 0.72), rgba(7, 17, 31, 0.1) 56%, rgba(7, 17, 31, 0.32));
+  }
+
+  .platform-card-cover-label {
+    @apply absolute bottom-4 left-4 max-w-[78%] rounded-2xl border border-white/10 bg-[#07111F]/45 px-4 py-3 text-white backdrop-blur-sm;
+  }
+
+  .platform-card-cover-label span {
+    @apply block text-xs font-black text-[#FCD34D];
+  }
+
+  .platform-card-cover-label strong {
+    @apply mt-1 block text-lg font-black leading-tight;
   }
 
   .platform-card-head {
     @apply flex min-w-0 items-start gap-4 pr-14;
+  }
+
+  .platform-card.with-cover .platform-card-head {
+    @apply px-5 pt-5;
+  }
+
+  .platform-card.with-cover .platform-metrics,
+  .platform-card.with-cover .platform-overview,
+  .platform-card.with-cover .chip-row,
+  .platform-card.with-cover .platform-actions {
+    @apply mx-5;
+  }
+
+  .platform-card.with-cover .platform-actions {
+    @apply mb-5;
   }
 
   .platform-logo {

@@ -23,7 +23,7 @@ import {
   ShieldCheck,
   Trophy,
 } from "lucide-react";
-import { categoryImagePaths, getArticleCoverImage } from "@/lib/cover-images";
+import { categoryImagePaths, getArticleCoverImage, getPlatformCoverImage } from "@/lib/cover-images";
 import { articles, categories, legalPages, platforms, site } from "@/lib/site-data";
 
 const navItems = [
@@ -424,14 +424,35 @@ export function ArticleCard({ article, featured = false }: { article: (typeof ar
 export function PlatformCard({ platform, rank }: { platform: (typeof platforms)[number]; rank?: number }) {
   const completeness = platform.basics.find((item) => item.label === "资料情况" || item.label === "资料完整度")?.value ?? "待核对";
   const openness = platform.basics.find((item) => item.label === "规则说明" || item.label === "规则公开度")?.value ?? "待核对";
+  const coverImage = getPlatformCoverImage(platform.slug);
 
   return (
-    <article className={rank ? "platform-card ranked" : "platform-card"}>
+    <article className={[rank ? "platform-card ranked" : "platform-card", coverImage ? "with-cover" : ""].filter(Boolean).join(" ")}>
       {rank ? <span className="platform-rank-flag">#{rank}</span> : null}
+      {coverImage ? (
+        <Link className="platform-card-cover" href={`/platform/${platform.slug}`} aria-label={`${platform.name}资料`}>
+          <Image
+            className="platform-card-cover-image"
+            src={coverImage}
+            alt=""
+            aria-hidden="true"
+            fill
+            sizes="(min-width: 1280px) 25vw, (min-width: 768px) 50vw, 100vw"
+            unoptimized
+          />
+          <span className="platform-card-cover-scrim" aria-hidden="true" />
+          <span className="platform-card-cover-label">
+            <span>{platform.type}</span>
+            <strong>{platform.name}</strong>
+          </span>
+        </Link>
+      ) : null}
       <div className="platform-card-head">
-        <div className="platform-logo large">
-          <span>{platform.name.slice(0, 1)}</span>
-        </div>
+        {!coverImage ? (
+          <div className="platform-logo large">
+            <span>{platform.name.slice(0, 1)}</span>
+          </div>
+        ) : null}
         <div className="min-w-0 flex-1">
           <div className="platform-title-row">
             <h3>{platform.name}</h3>
