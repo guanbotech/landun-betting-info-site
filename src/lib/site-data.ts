@@ -59,7 +59,7 @@ export const site = {
 export const categories: Category[] = [
   {
     slug: "esports-betting",
-    name: "电竞博彩",
+    name: "电子竞技",
     description: "写电竞赛事规则、赛制变化、阵容消息和结算争议，重点看信息有没有过期。",
     accent: "cyan",
     cover: "esports",
