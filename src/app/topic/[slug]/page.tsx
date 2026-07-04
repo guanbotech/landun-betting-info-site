@@ -12,6 +12,7 @@ import {
   SiteFooter,
   SiteHeader,
 } from "@/components/site/chrome";
+import { GameSimulator } from "@/components/site/game-simulator";
 import { getTopicCoverImage } from "@/lib/cover-images";
 import { articles, platforms, topicBySlug, topicPages, topicsByParent } from "@/lib/site-data";
 
@@ -81,6 +82,12 @@ export default async function TopicPage({ params }: Props) {
 
         <div className="mt-8 grid gap-8 lg:grid-cols-[minmax(0,1fr)_330px]">
           <div className="min-w-0">
+            {topic.parentSlug === "online-games" ? (
+              <section>
+                <GameSimulator slug={topic.slug} />
+              </section>
+            ) : null}
+
             <section>
               <SectionTitle eyebrow="先看这里" title={`${topic.title}要点`} />
               <div className="topic-grid">

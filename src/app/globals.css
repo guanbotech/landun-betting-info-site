@@ -1114,6 +1114,108 @@
     @apply mt-2 text-sm leading-6 text-[#475569];
   }
 
+  .game-sim {
+    @apply mb-10 overflow-hidden rounded-3xl border border-[#D8E4F2] bg-white p-5 shadow-[0_18px_48px_rgba(15,23,42,0.08)] sm:p-6;
+    background:
+      radial-gradient(circle at 84% 8%, rgba(245, 158, 11, 0.18), transparent 26%),
+      linear-gradient(135deg, #07111F, #17366B 54%, #F8FAFC 54.2%, #FFFFFF);
+  }
+
+  .game-sim-head {
+    @apply grid gap-4 text-white md:grid-cols-[minmax(0,1fr)_auto] md:items-start;
+  }
+
+  .game-sim-head h2 {
+    @apply mt-2 text-2xl font-black leading-tight sm:text-3xl;
+  }
+
+  .game-sim-head p:not(.eyebrow) {
+    @apply mt-2 max-w-2xl text-sm font-semibold leading-6 text-[#C7D8EE];
+  }
+
+  .game-balance {
+    @apply rounded-2xl border border-white/15 bg-white/10 px-5 py-4 text-right shadow-sm backdrop-blur;
+  }
+
+  .game-balance span {
+    @apply block text-xs font-black text-[#C7D8EE];
+  }
+
+  .game-balance strong {
+    @apply mt-1 block text-3xl font-black text-[#FBBF24];
+  }
+
+  .game-table {
+    @apply mt-5 grid gap-4 lg:grid-cols-[minmax(0,1.08fr)_0.92fr];
+  }
+
+  .game-panel,
+  .game-controls {
+    @apply rounded-2xl border border-white/15 bg-white/95 p-5 shadow-[0_12px_34px_rgba(15,23,42,0.12)];
+  }
+
+  .game-panel > span,
+  .game-label,
+  .stake-control span {
+    @apply text-xs font-black text-[#64748B];
+  }
+
+  .game-cards {
+    @apply mt-4 flex flex-wrap gap-3;
+  }
+
+  .game-cards b {
+    @apply grid h-24 w-16 place-items-center rounded-2xl border border-[#D8E4F2] bg-gradient-to-b from-white to-[#EFF6FF] text-xl font-black text-[#07111F] shadow-sm;
+  }
+
+  .game-panel > strong {
+    @apply mt-5 block text-2xl font-black text-[#07111F];
+  }
+
+  .game-panel p {
+    @apply mt-2 text-sm font-semibold leading-6 text-[#64748B];
+  }
+
+  .game-controls {
+    @apply grid gap-5;
+  }
+
+  .game-option-grid {
+    @apply mt-2 grid gap-2 sm:grid-cols-3;
+  }
+
+  .game-option-grid button {
+    @apply rounded-2xl border border-[#D8E4F2] bg-[#F8FAFC] px-4 py-3 text-left text-sm font-black text-[#102A43] transition hover:border-[#93C5FD] hover:bg-white;
+  }
+
+  .game-option-grid button.active {
+    @apply border-[#2563EB] bg-[#EFF6FF] text-[#1D4ED8] shadow-sm;
+  }
+
+  .game-option-grid small {
+    @apply mt-1 block text-xs font-bold text-[#B45309];
+  }
+
+  .stake-control {
+    @apply grid gap-2 rounded-2xl border border-[#E2E8F0] bg-[#F8FAFC] p-4;
+  }
+
+  .stake-control input {
+    @apply w-full accent-[#2563EB];
+  }
+
+  .stake-control strong {
+    @apply text-xl font-black text-[#07111F];
+  }
+
+  .game-actions {
+    @apply flex flex-wrap gap-3;
+  }
+
+  .game-disclaimer {
+    @apply mt-4 rounded-2xl border border-[#FED7AA] bg-[#FFF7ED] px-4 py-3 text-sm font-bold leading-6 text-[#9A3412];
+  }
+
   .topic-link-grid {
     @apply grid gap-3 sm:grid-cols-2 lg:grid-cols-3;
   }
