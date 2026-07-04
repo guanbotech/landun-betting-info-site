@@ -126,8 +126,7 @@ export default function Home() {
           <div className="dense-board-head">
             <SectionTitle
               eyebrow="频道速览"
-              title="先按赛事和规则快速进入"
-              description="把体育、电竞、棋牌、风险内容压缩在一起，减少翻页成本。"
+              title="体育赛事和规则"
             />
             <Link className="dense-board-link" href="/category/sports-betting">
               查看全部
@@ -171,8 +170,7 @@ export default function Home() {
           <div className="site-container">
             <SectionTitle
               eyebrow="栏目入口"
-              title="按你要查的内容进入"
-              description="电竞看版本和阵容，体育看赛程和结算，扑克和棋牌先看资金与活动限制。"
+              title="电竞-体育-德州-棋牌"
             />
             <div className="channel-grid">
               {keyCategories.map((category) => (
