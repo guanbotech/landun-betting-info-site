@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
+import Image from "next/image";
+import Link from "next/link";
 import { notFound } from "next/navigation";
+import { CalendarDays, MessageSquare } from "lucide-react";
 import {
   ArticleCard,
   Breadcrumbs,
@@ -12,7 +15,8 @@ import {
   StatCard,
 } from "@/components/site/chrome";
 import { GameSimulator } from "@/components/site/game-simulator";
-import { articles, articlesByCategory, categories, categoryBySlug, categoryModules, platforms } from "@/lib/site-data";
+import { getArticleCoverImage, getTopicCoverImage } from "@/lib/cover-images";
+import { articles, articlesByCategory, categories, categoryBySlug, categoryModules, platforms, topicsByParent } from "@/lib/site-data";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -53,6 +57,11 @@ export default async function CategoryPage({ params }: Props) {
   );
   const platformList = relatedPlatforms.length ? relatedPlatforms.slice(0, 2) : platforms.slice(0, 2);
   const isPoker = slug === "poker";
+  const isTopicCardOnly = slug === "sports-betting" || slug === "esports-betting";
+  const isArticleFlow = slug === "platform-reviews";
+  const isRankingCards = slug === "rankings";
+  const topicCards = topicsByParent(slug);
+  const infoArticles = articles;
   const sidebarPlatforms = platformList
     .concat(platforms)
     .filter((platform, index, list) => list.findIndex((item) => item.slug === platform.slug) === index);
@@ -87,12 +96,68 @@ export default async function CategoryPage({ params }: Props) {
           </div>
         </section>
 
+        {isTopicCardOnly ? (
+          <section className="clean-topic-board mt-8">
+            <SectionTitle eyebrow="专题卡片" title={`${category.name}栏目`} />
+            <div className="topic-card-wall">
+              {topicCards.map((topic) => (
+                <Link className="topic-entry-card" href={`/topic/${topic.slug}`} key={topic.slug}>
+                  <CategoryCover categorySlug={topic.parentSlug} title="" compact imageSrc={getTopicCoverImage(topic.slug)} />
+                  <div>
+                    <h2>{topic.title}</h2>
+                    <p>{topic.description}</p>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </section>
+        ) : null}
+
+        {isArticleFlow ? (
+          <section className="article-flow-panel mt-8">
+            <SectionTitle eyebrow="内容文章" title="博彩资讯文章" />
+            <div className="article-flow-list">
+              {infoArticles.map((article) => (
+                <Link className="article-flow-item" href={`/article/${article.slug}`} key={article.slug}>
+                  <Image
+                    src={getArticleCoverImage(article.slug) ?? "/images/categories/platform-review.webp"}
+                    alt=""
+                    width={240}
+                    height={150}
+                    unoptimized
+                  />
+                  <div>
+                    <h2>{article.title}</h2>
+                    <p>{article.description}</p>
+                    <span>
+                      <CalendarDays className="size-4" aria-hidden="true" />
+                      {article.updatedAt}
+                      <MessageSquare className="ml-4 size-4" aria-hidden="true" />
+                      0
+                    </span>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </section>
+        ) : null}
+
+        {isRankingCards ? (
+          <section className="mt-8 grid gap-5 lg:grid-cols-2">
+            {platforms.map((platform, index) => (
+              <PlatformCard key={platform.slug} platform={platform} rank={index + 1} />
+            ))}
+          </section>
+        ) : null}
+
         {isPoker ? (
           <section className="poker-sim-section online-game-focus mt-8">
             <GameSimulator slug="poker" />
           </section>
         ) : null}
 
+        {isTopicCardOnly || isArticleFlow || isRankingCards ? null : (
+        <>
         <section className="mt-8">
             <SectionTitle eyebrow="栏目重点" title={`${category.name}先看这些`} />
           <div className="module-grid">
@@ -149,6 +214,8 @@ export default async function CategoryPage({ params }: Props) {
           </div>
           <Sidebar articleList={latestArticles} guideTitle={guideTitleBySlug[slug] ?? "延伸阅读"} platformList={sidebarPlatforms} />
         </div>
+        </>
+        )}
       </main>
       <SiteFooter />
     </>

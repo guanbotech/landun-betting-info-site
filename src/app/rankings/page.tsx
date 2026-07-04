@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Breadcrumbs, CategoryCover, PlatformCard, RiskNotice, SiteFooter, SiteHeader, StatCard } from "@/components/site/chrome";
+import { Breadcrumbs, CategoryCover, PlatformCard, SiteFooter, SiteHeader, StatCard } from "@/components/site/chrome";
 import { platforms } from "@/lib/site-data";
 
 export const metadata: Metadata = {
@@ -31,41 +31,6 @@ export default function RankingsPage() {
             </div>
           </div>
           <CategoryCover categorySlug="rankings" title="资料完整度 / 风险等级" compact />
-        </section>
-
-        <div className="mt-8">
-          <RiskNotice />
-        </div>
-
-        <section className="filters" aria-label="平台筛选">
-          <div>
-            <span>平台类型</span>
-            <button>全部</button>
-            <button>电竞</button>
-            <button>体育</button>
-            <button>扑克</button>
-            <button>棋牌</button>
-          </div>
-          <div>
-            <span>风险等级</span>
-            <button>全部</button>
-            <button>低</button>
-            <button>中</button>
-            <button>高</button>
-          </div>
-          <div>
-            <span>支持内容</span>
-            <button>全部内容</button>
-            <button>赛事</button>
-            <button>扑克</button>
-            <button>棋牌</button>
-          </div>
-          <div>
-            <span>更新时间</span>
-            <button>最近更新</button>
-            <button>本月</button>
-            <button>本季度</button>
-          </div>
         </section>
 
         <section className="mt-8 grid gap-5 lg:grid-cols-2">
