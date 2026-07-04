@@ -67,34 +67,29 @@ export default function Home() {
                   浏览平台资料榜
                 </Link>
               </div>
+              <div className="hero-risk-strip" aria-label="今日风险观察">
+                <div>
+                  <span>01</span>
+                  <strong>虚假入口识别</strong>
+                  <small>域名 / 证书</small>
+                </div>
+                <div>
+                  <span>02</span>
+                  <strong>平台资料更新</strong>
+                  <small>{platforms.length} 个资料卡</small>
+                </div>
+                <div>
+                  <span>03</span>
+                  <strong>充值提现风险</strong>
+                  <small>费用 / 限制</small>
+                </div>
+                <div>
+                  <span>04</span>
+                  <strong>最新风险提醒</strong>
+                  <small>{articles.filter((item) => item.category === "risk-warning").length || 4} 条</small>
+                </div>
+              </div>
             </div>
-            <aside className="risk-observer" aria-label="今日风险观察">
-              <p className="eyebrow risk">今日风险观察</p>
-              <h2>访问前先核对入口、规则与资金限制</h2>
-              <p>重点看域名是否正常、条款是否写清楚、提款和活动有没有额外限制。</p>
-              <ul className="observer-list">
-                <li>
-                  <span className="observer-index">01</span>
-                  <span className="observer-text">虚假入口识别</span>
-                  <strong>域名 / 证书</strong>
-                </li>
-                <li>
-                  <span className="observer-index">02</span>
-                  <span className="observer-text">平台资料更新</span>
-                  <strong>{platforms.length} 个资料卡</strong>
-                </li>
-                <li>
-                  <span className="observer-index">03</span>
-                  <span className="observer-text">充值提现风险</span>
-                  <strong>费用 / 限制</strong>
-                </li>
-                <li>
-                  <span className="observer-index">04</span>
-                  <span className="observer-text">最新风险提醒</span>
-                  <strong>{articles.filter((item) => item.category === "risk-warning").length || 4} 条</strong>
-                </li>
-              </ul>
-            </aside>
           </div>
         </section>
 
