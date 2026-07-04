@@ -428,7 +428,6 @@ export function PlatformCard({ platform, rank }: { platform: (typeof platforms)[
 
   return (
     <article className={[rank ? "platform-card ranked" : "platform-card", coverImage ? "with-cover" : ""].filter(Boolean).join(" ")}>
-      {rank ? <span className="platform-rank-flag">#{rank}</span> : null}
       {coverImage ? (
         <Link className="platform-card-cover" href={`/platform/${platform.slug}`} aria-label={`${platform.name}资料`}>
           <Image

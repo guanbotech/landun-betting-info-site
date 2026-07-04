@@ -815,10 +815,6 @@
     @apply border-[#CBD5E1] bg-gradient-to-b from-white to-[#F8FAFC];
   }
 
-  .platform-rank-flag {
-    @apply absolute right-4 top-4 z-20 rounded-full border border-[#FED7AA] bg-[#FFF7ED] px-3 py-1 text-xs font-black text-[#B45309] shadow-sm;
-  }
-
   .platform-card-cover {
     @apply relative block aspect-[16/9] overflow-hidden bg-[#07111F];
   }
