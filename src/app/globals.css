@@ -557,29 +557,6 @@
     @apply mt-3;
   }
 
-  .home-platform-section .platform-card-cover {
-    aspect-ratio: 16 / 8.5;
-  }
-
-  .home-platform-section .platform-card-head {
-    @apply pt-4;
-  }
-
-  .home-platform-section .platform-overview {
-    display: -webkit-box;
-    overflow: hidden;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 3;
-  }
-
-  .home-section-head {
-    @apply flex flex-col gap-3 md:flex-row md:items-end md:justify-between;
-  }
-
-  .home-section-head .section-title {
-    @apply mb-0;
-  }
-
   .channel-grid {
     @apply grid gap-4 md:grid-cols-2 lg:grid-cols-4;
   }
