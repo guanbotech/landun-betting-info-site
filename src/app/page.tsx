@@ -2,7 +2,7 @@ import Link from "next/link";
 import { AlertTriangle, ArrowRight, ShieldCheck } from "lucide-react";
 import {
   ArticleCard,
-  CategoryIcon,
+  CategoryCover,
   OfferRules,
   PlatformCard,
   RankingTeaser,
@@ -113,9 +113,11 @@ export default function Home() {
             <div className="channel-grid">
               {keyCategories.map((category) => (
                 <Link className="category-card" href={`/category/${category.slug}`} key={category.slug}>
-                  <CategoryIcon label={category.name} />
-                  <h3>{category.name}</h3>
-                  <p>{category.description}</p>
+                  <CategoryCover categorySlug={category.slug} title="" compact />
+                  <div className="category-card-body">
+                    <h3>{category.name}</h3>
+                    <p>{category.description}</p>
+                  </div>
                 </Link>
               ))}
             </div>

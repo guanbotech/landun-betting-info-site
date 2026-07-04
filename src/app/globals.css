@@ -470,7 +470,20 @@
   }
 
   .category-card {
-    @apply rounded-2xl border border-[#E2E8F0] bg-white p-5 shadow-sm hover:border-[#BFDBFE] hover:shadow-md;
+    @apply overflow-hidden rounded-2xl border border-[#E2E8F0] bg-white p-0 shadow-[0_10px_28px_rgba(15,23,42,0.04)] transition hover:-translate-y-0.5 hover:border-[#BFDBFE] hover:shadow-[0_18px_40px_rgba(15,23,42,0.08)];
+  }
+
+  .category-card .category-cover {
+    @apply min-h-0 rounded-none;
+    aspect-ratio: 16 / 9;
+  }
+
+  .category-card .cover-content {
+    @apply rounded-2xl border border-white/10 bg-[#07111F]/40 px-4 py-3 backdrop-blur-sm;
+  }
+
+  .category-card-body {
+    @apply p-5;
   }
 
   .category-icon {
@@ -478,7 +491,7 @@
   }
 
   .category-card h3 {
-    @apply mt-4 text-xl font-black text-[#07111F];
+    @apply text-xl font-black text-[#07111F];
   }
 
   .category-card p {
