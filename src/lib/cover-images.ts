@@ -1,8 +1,8 @@
 export const categoryImagePaths: Record<string, string> = {
-  "esports-betting": "/images/categories/esports-betting.webp",
-  "sports-betting": "/images/categories/sports-betting.webp",
-  poker: "/images/categories/poker.webp",
-  "online-games": "/images/categories/card-games.webp",
+  "esports-betting": "/images/categories/esports-betting-v2.webp",
+  "sports-betting": "/images/categories/sports-betting-v2.webp",
+  poker: "/images/categories/poker-v2.webp",
+  "online-games": "/images/categories/card-games-v2.webp",
   "risk-warning": "/images/categories/risk-warning.webp",
   "platform-reviews": "/images/categories/platform-review.webp",
   rankings: "/images/categories/rankings.webp",
@@ -10,33 +10,33 @@ export const categoryImagePaths: Record<string, string> = {
 };
 
 const articleImagePaths: Record<string, string> = {
-  "esports-market-risk-checklist": "/images/covers/esports-moba.webp",
-  "sports-betting-rule-page-template": "/images/covers/football.webp",
-  "poker-platform-data-model": "/images/covers/poker-table.webp",
-  "online-games-offer-terms": "/images/covers/card-games-rules.webp",
+  "esports-market-risk-checklist": "/images/covers/esports-moba-v2.webp",
+  "sports-betting-rule-page-template": "/images/covers/football-v2.webp",
+  "poker-platform-data-model": "/images/covers/poker-table-v2.webp",
+  "online-games-offer-terms": "/images/covers/card-games-rules-v2.webp",
   "risk-alert-entry-verification": "/images/covers/risk-domain-security.webp",
   "guide-responsible-gambling": "/images/covers/risk-domain-security.webp",
 };
 
 const topicImagePaths: Record<string, string> = {
-  "champions-league": "/images/covers/football.webp",
-  "premier-league": "/images/covers/football.webp",
-  "chinese-super-league": "/images/covers/football.webp",
-  "sports-betting-regulation": "/images/covers/football.webp",
+  "champions-league": "/images/covers/football-v2.webp",
+  "premier-league": "/images/covers/football-v2.webp",
+  "chinese-super-league": "/images/covers/football-v2.webp",
+  "sports-betting-regulation": "/images/covers/football-v2.webp",
   nba: "/images/covers/basketball.webp",
   f1: "/images/covers/f1.webp",
-  "league-of-legends": "/images/covers/esports-moba.webp",
-  dota2: "/images/covers/esports-moba.webp",
-  "honor-of-kings": "/images/covers/esports-moba.webp",
+  "league-of-legends": "/images/covers/esports-moba-v2.webp",
+  dota2: "/images/covers/esports-moba-v2.webp",
+  "honor-of-kings": "/images/covers/esports-moba-v2.webp",
   cs2: "/images/covers/esports-fps.webp",
   valorant: "/images/covers/esports-fps.webp",
   crossfire: "/images/covers/esports-fps.webp",
-  "niuniu-online": "/images/covers/card-games-rules.webp",
-  "sangong-online": "/images/covers/card-games-rules.webp",
-  "baccarat-online": "/images/covers/card-games-rules.webp",
-  "golden-flower-online": "/images/covers/card-games-rules.webp",
-  "dragon-tiger-online": "/images/covers/card-games-rules.webp",
-  "doudizhu-online": "/images/covers/card-games-rules.webp",
+  "niuniu-online": "/images/covers/card-games-rules-v2.webp",
+  "sangong-online": "/images/covers/card-games-rules-v2.webp",
+  "baccarat-online": "/images/covers/card-games-rules-v2.webp",
+  "golden-flower-online": "/images/covers/card-games-rules-v2.webp",
+  "dragon-tiger-online": "/images/covers/card-games-rules-v2.webp",
+  "doudizhu-online": "/images/covers/card-games-rules-v2.webp",
 };
 
 export function getArticleCoverImage(slug: string) {
