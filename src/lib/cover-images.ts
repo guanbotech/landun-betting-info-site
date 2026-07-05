@@ -22,6 +22,18 @@ const articleImagePaths: Record<string, string> = {
   "asia-card-games-offer-risk": "/images/covers/card-games-rules-v3.webp",
   "asia-casino-travel-data-check": "/images/categories/platform-review-v3.webp",
   "asia-betting-platform-data-ranking": "/images/categories/rankings-v3.webp",
+  "asia-betting-risk-map": "/images/categories/risk-warning-v3.webp",
+  "asia-football-betting-timezone-settlement": "/images/covers/football-v3.webp",
+  "asia-basketball-overtime-line-check": "/images/covers/basketball-v3.webp",
+  "asia-esports-bo-rules-check": "/images/covers/esports-moba-v3.webp",
+  "asia-esports-map-pool-update-risk": "/images/covers/esports-fps-v3.webp",
+  "asia-poker-rake-withdrawal-check": "/images/covers/poker-table-v3.webp",
+  "asia-poker-account-freeze-risk": "/images/covers/poker-table-v3.webp",
+  "asia-card-games-valid-bet-guide": "/images/covers/card-games-rules-v3.webp",
+  "asia-baccarat-online-risk-check": "/images/covers/card-games-rules-v3.webp",
+  "asia-platform-payment-delay-risk": "/images/categories/risk-warning-v3.webp",
+  "asia-casino-age-id-requirements": "/images/categories/platform-review-v3.webp",
+  "asia-betting-content-source-check": "/images/categories/platform-review-v3.webp",
 };
 
 const topicImagePaths: Record<string, string> = {
