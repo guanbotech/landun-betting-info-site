@@ -16,6 +16,12 @@ const articleImagePaths: Record<string, string> = {
   "online-games-offer-terms": "/images/covers/card-games-rules-v3.webp",
   "risk-alert-entry-verification": "/images/covers/risk-domain-security-v3.webp",
   "guide-responsible-gambling": "/images/covers/risk-domain-security-v3.webp",
+  "asia-betting-info-entry-check": "/images/categories/platform-review-v3.webp",
+  "asia-sports-betting-rule-differences": "/images/covers/football-v3.webp",
+  "asia-esports-betting-data-checklist": "/images/covers/esports-moba-v3.webp",
+  "asia-card-games-offer-risk": "/images/covers/card-games-rules-v3.webp",
+  "asia-casino-travel-data-check": "/images/categories/platform-review-v3.webp",
+  "asia-betting-platform-data-ranking": "/images/categories/rankings-v3.webp",
 };
 
 const topicImagePaths: Record<string, string> = {
