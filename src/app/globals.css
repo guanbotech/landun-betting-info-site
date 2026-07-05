@@ -305,7 +305,7 @@
     @apply relative overflow-hidden border-b border-[#D8E4F2] bg-white;
     background:
       linear-gradient(90deg, #FFFFFF 0%, rgba(255,255,255,0.98) 25%, rgba(255,255,255,0.78) 44%, rgba(9,24,48,0.24) 67%, rgba(7,17,31,0.72) 100%),
-      url("/images/hero/home-person-odds.webp") center / cover no-repeat,
+      url("/images/hero/home-person-odds-v2.webp") center / cover no-repeat,
       #FFFFFF;
   }
 
